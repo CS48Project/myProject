@@ -14,4 +14,7 @@ urlpatterns = patterns('',
     url(r'^foodoftheday/$', 'project.views.food_of_the_day'),
     url(r'^submit/$', 'project.views.submit'),
     url(r'^index/$', 'project.views.index'),
+    url(r'^register/$', 'project.views.register'),
+    url(r'^login/$', 'project.views.login'),
+    url(r'^profile/$', 'project.views.profile'),
 )
