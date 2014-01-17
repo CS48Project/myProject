@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^index/$', 'project.views.index'),
     url(r'^profile/$', 'project.views.profile'),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^terms/$', 'project.views.terms'),
 )
