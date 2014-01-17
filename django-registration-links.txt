@@ -1,0 +1,8 @@
+django-registration urls
+
+/accounts/activate/complete
+/accounts/activate/
+/accounts/register/
+/accounts/register/complete/
+/accounts/register/closed/
+/accounts/login/

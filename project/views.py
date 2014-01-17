@@ -18,12 +18,3 @@ def submit(request):
 
 def index(request):
     return render_to_response('index.html')
-
-def login(request):
-    return render_to_response('login.html')
-
-def profile(request):
-    return render_to_response('profile.html')
-
-def register(request):
-    return render_to_response('register.html')
