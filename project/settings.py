@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'user',
     'registration',
+    'food',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,6 +81,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+MEDIA_ROOT = 'C:/Users/Brandon/Desktop/myProject/static/'
 
 
 # Static files (CSS, JavaScript, Images)

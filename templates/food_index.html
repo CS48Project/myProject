@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+	<h1>Food Index <small>A list of all food items.</small></h1>
+</div>
+
+{% for food in food_index %}
+<div>
+	<h2><a href="/food/get/{{ food.id }}/">{{ food.name }}</a></h2>
+</div>
+{% endfor %}
+
+{% endblock %}

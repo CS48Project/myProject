@@ -5,29 +5,12 @@
  	<h1>Submit <small>Add and item to our ever-growing list.</small></h1>
 </div>
 
-<div class="row">
-	<div class="col-md-4">
-		<form role="form">
-  			<div class="form-group">
-    			<label for="food_name">Food name</label>
-    			<input type="text" class="form-control" id="food_name" placeholder="Food name">
-  			</div>
-  			<div class="form-group">
-    			<label for="food_category">Category</label>
-    			<input type="text" class="form-control" id="food_category" placeholder="Category">
-  			</div>
-  			<div class="form-group">
-    			<label for="food_picture">Upload picture</label>
-    			<input type="file" id="food_picture">
-    			<p class="help-block">Please upload a 300x200px picture.</p>
-  			</div>
-  			<div class="checkbox">
-    			<label>
-      				<input type="checkbox"> I agree to the <a href="/terms/">Terms and Conditions</a> of this site for uploading files.
-    			</label>
-  			</div>
-  			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
-	</div>
-</div>
+<form action="/submit/" method="post" enctype="multipart/form-data">{% csrf_token %}
+  <ul>
+    {{ form.as_ul }}
+  </ul>
+
+  <input type="submit" name="submit" value="Sumbit">
+</form>
+
 {% endblock %}

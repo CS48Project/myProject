@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+	<h1>{{ food.name }} <small>A description of this food item.</small></h1>
+</div>
+
+<p>Category: {{ food.category }}</p>
+<p>Type: {{ food.food_type }}</p>
+<p>Rating: {{ food.rating }}</p>
+
+{% if food.thumbnail %}
+	<p><img src="/static/assets/{{ food.thumbnail }}" width="200" /></p>
+{% endif %}
+
+{% endblock %}

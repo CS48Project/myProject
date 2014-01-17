@@ -13,9 +13,6 @@ def what_to_eat(request):
 def food_of_the_day(request):
     return render_to_response('food_of_the_day.html')
 
-def submit(request):
-    return render_to_response('submit.html')
-
 def index(request):
     return render_to_response('index.html')
 
