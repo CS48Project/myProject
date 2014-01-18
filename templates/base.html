@@ -47,17 +47,17 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="/profile/" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+            <a href="/accounts/profile/" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="/accounts/profile/">My Profile</a></li>
               <li><a href="/accounts/profile/edit/">Edit Profile</a></li>
             </ul>
           </li>
-          <li><a href="/accounts/registration/">Register</a></li>
+          <li><a href="/accounts/register/">Register</a></li>
           {% if user.is_authenticated %}
-            <li><a href="/accounts/Logout/">Logout</a></li>
+            <li><a href="/accounts/logout/">Logout</a></li>
           {% else %}
-            <li><a href="/accounts/Login/">Login</a></li>
+            <li><a href="/accounts/login/">Login</a></li>
           {% endif %}
         </ul>
       </div><!-- /.navbar-collapse -->
