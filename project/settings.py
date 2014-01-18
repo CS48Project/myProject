@@ -29,8 +29,6 @@ ALLOWED_HOSTS = []
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
                 os.path.join(BASE_DIR, 'food/templates')]
 
-ACCOUNT_ACTIVATION_DAYS = 7
-
 
 # Application definition
 
@@ -41,8 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',
-    'registration',
     'food',
 )
 
