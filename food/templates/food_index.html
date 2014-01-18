@@ -5,10 +5,20 @@
 	<h1>Food Index <small>A list of all food items.</small></h1>
 </div>
 
+{% if food_index.count > 0 %}
+
 {% for food in food_index %}
 <div>
-	<h2><a href="/food/get/{{ food.id }}/">{{ food.name }}</a></h2>
+	<h2><a href="/food/{{ food.id }}/">{{ food.name }}</a></h2>
+	<ul>
+		<li>Category: {{ food.category }}</li>
+	</ul>
 </div>
 {% endfor %}
+
+{% else %}
+<p>None to show!</p>
+
+{% endif %}
 
 {% endblock %}

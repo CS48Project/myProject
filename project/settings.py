@@ -26,7 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
+                os.path.join(BASE_DIR, 'food/templates')]
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
@@ -82,7 +83,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = 'C:/Users/Brandon/Desktop/myProject/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # Static files (CSS, JavaScript, Images)
