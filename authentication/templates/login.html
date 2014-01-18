@@ -1,0 +1,31 @@
+{% extends "../templates/base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+	<h1>Login <small>Sign in to your account!</small></h1>
+</div>
+
+<form action="" method="post">
+	{% csrf_token %}
+	{% if form.errors %}
+		<p>Please correct the following fields:</p>
+	{% endif %}
+	<div class="register-div">
+		<p><label for="username" {% if form.username.errors %} class="error" {% endif %}>User name</label></p>
+		<p>{{ form.username }}</p>
+		{% if form.username.errors %}
+			<p class="error">{{ form.username.errors }}</p>
+		{% endif %}
+	</div>
+	<div class="register-div">
+		<p><label for="password" {% if form.password.errors %} class="error" {% endif %}>Password</label></p>
+		<p>{{ form.password }}</p>
+		{% if form.password.errors %}
+			<p class="error">{{ form.password.errors }}</p>
+		{% endif %}
+	</div>
+	<p><input type="submit" alt="register" /></p>
+</form>
+
+{% endblock %}

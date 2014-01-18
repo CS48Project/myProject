@@ -53,8 +53,12 @@
               <li><a href="/accounts/profile/edit/">Edit Profile</a></li>
             </ul>
           </li>
-          <li><a href="/accounts/login/">Login</a></li>
-          <li><a href="/accounts/register/">Register</a></li>
+          <li><a href="/accounts/registration/">Register</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="/accounts/Logout/">Logout</a></li>
+          {% else %}
+            <li><a href="/accounts/Login/">Login</a></li>
+          {% endif %}
         </ul>
       </div><!-- /.navbar-collapse -->
     </nav>

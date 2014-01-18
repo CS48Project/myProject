@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^food/', include('food.urls')),
+    url(r'^accounts/', include('authentication.urls')),
 
     url(r'^$', 'project.views.home'),
     url(r'^about/$', 'project.views.about'),
