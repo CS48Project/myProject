@@ -20,7 +20,7 @@ def WallabyRegistration(request):
 			wallaby = Wallaby(user=user, name=form.cleaned_data['name'],
 							  birthday=form.cleaned_data['birthday'])
 			wallaby.save()
-			return HttpResponseRedirect('/')
+			return HttpResponseRedirect('/accounts/registrationsuccess/')
 		else:
 			return render_to_response('register.html', {'form': form},
 									  context_instance=RequestContext(request))
@@ -59,3 +59,6 @@ def LoginRequest(request):
 def LogoutRequest(request):
 	logout(request)
 	return HttpResponseRedirect('/')
+
+def registrationsuccess(request):
+	return render_to_response("registrationsuccess.html", context_instance=RequestContext(request))
