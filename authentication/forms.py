@@ -24,11 +24,13 @@ class RegistrationForm(ModelForm):
 		raise forms.ValidationError("That username is already taken. "
 									"Please select another.")
 
-	def clean(self):
-		if self.cleaned_data['password'] != self.cleaned_data['password1']:
-			raise forms.ValidationError("The passwords did not match. "
-										"Please try again.")
-		return self.cleaned_data
+	def clean_password1(self):
+		if 'password' in self.cleaned_data:
+			password = self.cleaned_data['password']
+			password1 = self.cleaned_data['password1']
+		if password == password1:
+			return password1
+		raise forms.ValidationError("The passwords you entered do not match.")
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label=(u'User name'))
