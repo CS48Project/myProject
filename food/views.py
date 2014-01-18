@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 from food.forms import FoodForm
 from food.models import Food, Category, RandomFood
 
@@ -22,22 +23,27 @@ def submit(request):
         return render_to_response('submit.html', args)
 
 def food_index(request):
-    return render_to_response('food_index.html', {'food_index': Food.objects.all()})
+    return render_to_response('food_index.html', {'food_index': Food.objects.all()},
+                              context_instance=RequestContext(request))
 
 def food(request, food_id=1):
-    return render_to_response('food.html', {'food': Food.objects.get(id=food_id)})
+    return render_to_response('food.html', {'food': Food.objects.get(id=food_id)},
+                              context_instance=RequestContext(request))
 
 def what_to_eat(request):
-    return render_to_response('what_to_eat.html',
-                             {'random_food': RandomFood()})
+    return render_to_response('what_to_eat.html', {'random_food': RandomFood()},
+                              context_instance=RequestContext(request))
 
 def food_of_the_day(request):
-    return render_to_response('food_of_the_day.html')
+    return render_to_response('food_of_the_day.html',
+                              context_instance=RequestContext(request))
 
 def category_index(request):
     return render_to_response('category_index.html',
-                             {'category_index': Category.objects.all()})
+                             {'category_index': Category.objects.all()},
+                              context_instance=RequestContext(request))
 
 def category(request):
     return render_to_response('category.html',
-                             {'category': Category.objects.get(id=category_id)})
+                             {'category': Category.objects.get(id=category_id)},
+                              context_instance=RequestContext(request))
