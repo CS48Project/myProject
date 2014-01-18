@@ -5,4 +5,5 @@ urlpatterns = patterns('',
 	url(r'^login/$', 'authentication.views.LoginRequest'),
 	url(r'^logout/$', 'authentication.views.LogoutRequest'),
 	url(r'^registrationsuccess/$', 'authentication.views.registrationsuccess'),
+	url(r'^profile/$', 'authentication.views.profile'),
 )

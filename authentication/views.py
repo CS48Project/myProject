@@ -62,3 +62,6 @@ def LogoutRequest(request):
 
 def registrationsuccess(request):
 	return render_to_response("registrationsuccess.html", context_instance=RequestContext(request))
+
+def profile(request):
+	return render_to_response("profile.html", context_instance=RequestContext(request))
