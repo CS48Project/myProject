@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from food.forms import FoodForm

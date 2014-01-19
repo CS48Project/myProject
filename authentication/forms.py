@@ -15,7 +15,8 @@ class RegistrationForm(ModelForm):
 
 	class Meta:
 		model = Wallaby
-		fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password1', 'birthday']
+		fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password1',
+				  'birthday']
 
 	def clean_username(self):
 		username = self.cleaned_data['username']

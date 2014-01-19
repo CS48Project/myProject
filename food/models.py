@@ -7,9 +7,38 @@ def get_upload_file_name(instance, filename):
 
 # Create your models here.
 class Food(models.Model):
-    name = models.CharField(max_length=100)
-    category = models.CharField(max_length=100)
-    food_type = models.CharField(max_length=100)
+    category_choices = (
+        ('Am', 'American'),
+        ('As', 'Asian'),
+        ('BBQ', 'Barbecue'),
+        ('BBL', 'Breakfast, Brunch & Lunch'),
+        ('Ch', 'Chinese'),
+        ('De', 'Dessert'),
+        ('FF', 'Fast Food'),
+        ('Fr', 'French'),
+        ('HHD', 'Hamburgers & Hot Dogs'),
+        ('HF', 'Health Food'),
+        ('ICFD', 'Ice Cream & Frozen Desserts'),
+        ('In', 'Indian'),
+        ('It', 'Italian'),
+        ('Ja', 'Japanese'),
+        ('Mx', 'Mexican'),
+        ('Mi', 'Miscellaneous'),
+        ('Pz', 'Pizza'),
+        ('SS', 'Sandwich Shops'),
+        ('Se', 'Seafood'),
+        ('SH', 'Steak Houses'),
+        ('Th', 'Thai'),
+        ('Vi', 'Vietnamese'),
+    )
+
+    food_type_choices = (
+        ('Mi', 'Miscellaneous'),
+    )
+
+    name = models.CharField(max_length=50)
+    category = models.CharField(max_length=4, choices=category_choices, default='Mi')
+    food_type = models.CharField(max_length=4, choices=food_type_choices, default='Mi')
     rating = models.IntegerField(default=0)
     thumbnail = models.FileField(upload_to=get_upload_file_name)
     
@@ -24,5 +53,4 @@ class Category(models.Model):
         return self.name
 
 def RandomFood():
-    food_list = Food.objects.all()
-    return choice(food_list)
+    return choice(Food.objects.all())
