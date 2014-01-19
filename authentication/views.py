@@ -14,11 +14,12 @@ def WallabyRegistration(request):
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
 			user = User.objects.create_user(username=form.cleaned_data['username'],
+											first_name=form.cleaned_data['first_name'],
+											last_name=form.cleaned_data['last_name'],
 											email=form.cleaned_data['email'],
 											password=form.cleaned_data['password'])
 			user.save()
-			wallaby = Wallaby(user=user, name=form.cleaned_data['name'],
-							  birthday=form.cleaned_data['birthday'])
+			wallaby = Wallaby(user=user, birthday=form.cleaned_data['birthday'])
 			wallaby.save()
 			return HttpResponseRedirect('/accounts/registrationsuccess/')
 		else:
@@ -42,7 +43,7 @@ def LoginRequest(request):
 			wallaby = authenticate(username=username, password=password)
 			if wallaby is not None:
 				login(request, wallaby)
-				return HttpResponseRedirect('/')
+				return HttpResponseRedirect('/accounts/profile/')
 			else:
 				return render_to_response('login.html', {'form': form},
 										  context_instance=RequestContext(request))
@@ -61,7 +62,8 @@ def LogoutRequest(request):
 	return HttpResponseRedirect('/')
 
 def registrationsuccess(request):
-	return render_to_response("registrationsuccess.html", context_instance=RequestContext(request))
+	return render_to_response("registrationsuccess.html",
+							  context_instance=RequestContext(request))
 
 def profile(request):
 	return render_to_response("profile.html", context_instance=RequestContext(request))

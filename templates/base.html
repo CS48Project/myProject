@@ -48,8 +48,7 @@
 
         <ul class="nav navbar-nav navbar-right">  
           {% if user.is_authenticated %}
-            <li><a href="/accounts/profile/">Hey, {{ user.username }}!</a></a></li>
-            
+            <li><a href="/accounts/profile/">Hey, {{ user.username }}!</a></li>
             <li><a href="/accounts/logout/">Logout</a></li>
           {% else %}
             <li><a href="/accounts/register/">Register</a></li>

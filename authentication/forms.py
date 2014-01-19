@@ -5,6 +5,8 @@ from authentication.models import Wallaby
 
 class RegistrationForm(ModelForm):
 	username = forms.CharField(label=(u'User name'))
+	first_name = forms.CharField(label=(u'First name'))
+	last_name = forms.CharField(label=(u'Last name'))
 	email = forms.EmailField(label=(u'Email'))
 	password = forms.CharField(label=(u'Password'),
 							   widget=forms.PasswordInput(render_value=False))
@@ -13,7 +15,7 @@ class RegistrationForm(ModelForm):
 
 	class Meta:
 		model = Wallaby
-		exclude = ('user',)
+		fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password1', 'birthday']
 
 	def clean_username(self):
 		username = self.cleaned_data['username']
