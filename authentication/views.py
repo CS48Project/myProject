@@ -54,7 +54,8 @@ def LoginRequest(request):
 
 def LogoutRequest(request):
 	logout(request)
-	return HttpResponseRedirect('/')
+	return render_to_response("logoutsuccess.html",
+							  context_instance=RequestContext(request))
 
 def registrationsuccess(request):
 	return render_to_response("registrationsuccess.html",

@@ -6,7 +6,7 @@
 	<h1>Register <small>Create an account!</small></h1>
 </div>
 
-<form action="" method="post">
+<form role="form" action="" method="post">
 	{% csrf_token %}
 	{% if form.errors %}
 		<p>Please correct the following fields:</p>

@@ -11,21 +11,21 @@
 	{% if form.errors %}
 		<p>Please correct the following fields:</p>
 	{% endif %}
-	<div class="register-div">
+	<div class="login-div">
 		<p><label for="username" {% if form.username.errors %} class="error" {% endif %}>User name</label></p>
 		<p>{{ form.username }}</p>
 		{% if form.username.errors %}
 			<p class="error">{{ form.username.errors }}</p>
 		{% endif %}
 	</div>
-	<div class="register-div">
+	<div class="login-div">
 		<p><label for="password" {% if form.password.errors %} class="error" {% endif %}>Password</label></p>
 		<p>{{ form.password }}</p>
 		{% if form.password.errors %}
 			<p class="error">{{ form.password.errors }}</p>
 		{% endif %}
 	</div>
-	<p><input type="submit" alt="register" /></p>
+	<p><input type="submit" alt="login" /></p>
 </form>
 
 {% endblock %}

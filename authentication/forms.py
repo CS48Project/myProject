@@ -31,7 +31,8 @@ class RegistrationForm(ModelForm):
 			password1 = self.cleaned_data['password1']
 		if password == password1:
 			return password1
-		raise forms.ValidationError("The passwords you entered do not match.")
+		raise forms.ValidationError("The passwords you entered did not match. "
+									"Please try again.")
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label=(u'User name'))

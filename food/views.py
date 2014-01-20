@@ -8,11 +8,11 @@ from food.models import Food, Category, RandomFood
 # Create your views here.
 def submit(request):
   if request.user.is_authenticated():
-    if request.POST:
-        form = FoodForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/food/')
+    if request.method == 'POST':
+      form = FoodForm(request.POST)
+      if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/food/')
     else:
       form = FoodForm()
     args = {}
