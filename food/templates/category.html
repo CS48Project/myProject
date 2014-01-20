@@ -5,4 +5,12 @@
 	<h1>{{ category.name }} <small>A list of all {{ category.name }} items.</small></h1>
 </div>
 
+{% for food in food_index %}
+	{% if food.category == category.name %}
+		<div>
+			<h3><a href="/food/{{ food.id }}/">{{ food.name }}</a></h3>
+		</div>
+	{% endif %}
+{% endfor %}
+
 {% endblock %}

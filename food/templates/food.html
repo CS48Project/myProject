@@ -1,4 +1,5 @@
 {% extends "../templates/base.html" %}
+{% load static %}
 
 {% block content %}
 <div class="page-header">
@@ -7,6 +8,7 @@
 
 <p>Category: {{ food.category }}</p>
 <p>Type: {{ food.food_type }}</p>
+<p>Restaurant: {{ food.restaurant }}</p>
 <p>Rating: {{ food.rating }}</p>
 
 {% if food.thumbnail %}

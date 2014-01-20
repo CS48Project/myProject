@@ -11,17 +11,13 @@ def submit(request):
         form = FoodForm(request.POST)
         if form.is_valid():
             form.save()
-            
             return HttpResponseRedirect('/food/')
     else:
       form = FoodForm()
-
     args = {}
     args.update(csrf(request))
-
     args['form'] = form
-
-    return render_to_response('submit.html', args)
+    return render_to_response('submit.html', args, context_instance=RequestContext(request))
 
 def food_index(request):
     return render_to_response('food_index.html', {'food_index': Food.objects.all()},
