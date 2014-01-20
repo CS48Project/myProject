@@ -14,6 +14,5 @@ urlpatterns = patterns('',
 
     url(r'^$', 'project.views.home'),
     url(r'^about/$', 'project.views.about'),
-#    url(r'^profile/$', 'project.views.profile'),
     url(r'^terms/$', 'project.views.terms'),
 )
