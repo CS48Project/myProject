@@ -7,8 +7,6 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def WallabyRegistration(request):
-#	if request.user.is_authenticated():
-#		return HttpResponseRedirect('/')
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
