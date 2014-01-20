@@ -19,9 +19,9 @@ def submit(request):
     args.update(csrf(request))
     args['form'] = form
     return render_to_response('submit.html', args, context_instance=RequestContext(request))
-
   else:
     return HttpResponseRedirect('/accounts/login/')
+
 def food_index(request):
     return render_to_response('food_index.html', {'food_index': Food.objects.all()},
                               context_instance=RequestContext(request))
