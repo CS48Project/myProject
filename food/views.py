@@ -7,6 +7,7 @@ from food.models import Food, Category, RandomFood
 
 # Create your views here.
 def submit(request):
+  if request.user.is_authenticated():
     if request.POST:
         form = FoodForm(request.POST)
         if form.is_valid():
@@ -19,6 +20,8 @@ def submit(request):
     args['form'] = form
     return render_to_response('submit.html', args, context_instance=RequestContext(request))
 
+  else:
+    return HttpResponseRedirect('/accounts/login/')
 def food_index(request):
     return render_to_response('food_index.html', {'food_index': Food.objects.all()},
                               context_instance=RequestContext(request))
