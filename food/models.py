@@ -45,7 +45,6 @@ class Food(models.Model):
     name = models.CharField(max_length=50)
     category = models.CharField(max_length=50, choices=category_choices, default='Other')
     restaurant = models.CharField(max_length=50)
-    food_type = models.CharField(max_length=50, null=True, blank=True)
     rating = MinMaxFloat(max_value=5.0, min_value=0.0, default=3.0)
     thumbnail = models.FileField(upload_to=get_upload_file_name, null=True, blank=True)
     

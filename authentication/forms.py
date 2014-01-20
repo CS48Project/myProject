@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from authentication.models import Wallaby
 
 class RegistrationForm(ModelForm):
 	username = forms.CharField(label=(u'User name'))
@@ -14,9 +13,8 @@ class RegistrationForm(ModelForm):
 							    widget=forms.PasswordInput(render_value=False))
 
 	class Meta:
-		model = Wallaby
-		fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password1',
-				  'birthday']
+		model = User
+		fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password1']
 
 	def clean_username(self):
 		username = self.cleaned_data['username']

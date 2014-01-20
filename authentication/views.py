@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from authentication.forms import RegistrationForm, LoginForm
-from authentication.models import Wallaby
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
@@ -19,8 +18,6 @@ def WallabyRegistration(request):
 											email=form.cleaned_data['email'],
 											password=form.cleaned_data['password'])
 			user.save()
-			wallaby = Wallaby(user=user, birthday=form.cleaned_data['birthday'])
-			wallaby.save()
 			return HttpResponseRedirect('/accounts/registrationsuccess/')
 		else:
 			return render_to_response('register.html', {'form': form},
@@ -40,9 +37,9 @@ def LoginRequest(request):
 		if form.is_valid():
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
-			wallaby = authenticate(username=username, password=password)
-			if wallaby is not None:
-				login(request, wallaby)
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
 				return HttpResponseRedirect('/accounts/profile/')
 			else:
 				return render_to_response('login.html', {'form': form},

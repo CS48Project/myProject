@@ -26,13 +26,6 @@
 		{% endif %}
 	</div>	
 	<div class="register-div">
-		<p><label for="birthday" {% if form.birthday.errors %} class="error" {% endif %}>Birthday</label></p>
-		<p>{{ form.birthday }}</p>
-		{% if form.birthday.errors %}
-			<p class="error">{{ form.birthday.errors }}</p>
-		{% endif %}
-	</div>
-	<div class="register-div">
 		<p><label for="email" {% if form.email.errors %} class="error" {% endif %}>Email</label></p>
 		<p>{{ form.email }}</p>
 		{% if form.email.errors %}
