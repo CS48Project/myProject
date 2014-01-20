@@ -5,6 +5,10 @@
 	<h1>Food Index <small>A list of all food items.</small></h1>
 </div>
 
+<div>
+	<h3><a href="/food/submit/">Submit Food Item</a></h3>
+</div>
+
 {% if food_index.count > 0 %}
 
 {% for food in food_index %}
@@ -12,6 +16,8 @@
 	<h2><a href="/food/{{ food.id }}/">{{ food.name }}</a></h2>
 	<ul>
 		<li>Category: {{ food.category }}</li>
+		<li>Type: {{ food.food_type }}</li>
+		<li>Rating: {{ food.rating }}</li>
 	</ul>
 </div>
 {% endfor %}

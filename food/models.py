@@ -6,41 +6,55 @@ def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.','_'), filename)
 
 # Create your models here.
+class MinMaxFloat(models.FloatField):
+    def __init__(self, min_value=None, max_value=None, *args, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        super(MinMaxFloat, self).__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value' : self.max_value}
+        defaults.update(kwargs)
+        return super(MinMaxFloat, self).formfield(**defaults)
+
 class Food(models.Model):
     category_choices = (
-        ('Am', 'American'),
-        ('As', 'Asian'),
-        ('BBQ', 'Barbecue'),
-        ('BBL', 'Breakfast, Brunch & Lunch'),
-        ('Ch', 'Chinese'),
-        ('De', 'Dessert'),
-        ('FF', 'Fast Food'),
-        ('Fr', 'French'),
-        ('HHD', 'Hamburgers & Hot Dogs'),
-        ('HF', 'Health Food'),
-        ('ICFD', 'Ice Cream & Frozen Desserts'),
-        ('In', 'Indian'),
-        ('It', 'Italian'),
-        ('Ja', 'Japanese'),
-        ('Mx', 'Mexican'),
-        ('Mi', 'Miscellaneous'),
-        ('Pz', 'Pizza'),
-        ('SS', 'Sandwich Shops'),
-        ('Se', 'Seafood'),
-        ('SH', 'Steak Houses'),
-        ('Th', 'Thai'),
-        ('Vi', 'Vietnamese'),
+        ('American', 'American'),
+        ('Asian', 'Asian'),
+        ('Barbecue', 'Barbecue'),
+        ('Breakfast, Brunch & Lunch', 'Breakfast, Brunch & Lunch'),
+        ('Chinese', 'Chinese'),
+        ('Dessert', 'Dessert'),
+        ('Fast Food', 'Fast Food'),
+        ('French', 'French'),
+        ('Hamburgers & Hot Dogs', 'Hamburgers & Hot Dogs'),
+        ('Health Food', 'Health Food'),
+        ('Ice Cream & Frozen Desserts', 'Ice Cream & Frozen Desserts'),
+        ('Indian', 'Indian'),
+        ('Italian', 'Italian'),
+        ('Japanese', 'Japanese'),
+        ('Mexican', 'Mexican'),
+        ('Other', 'Other'),
+        ('Pizza', 'Pizza'),
+        ('Sandwich Shops', 'Sandwich Shops'),
+        ('Seafood', 'Seafood'),
+        ('Steak Houses', 'Steak Houses'),
+        ('Thai', 'Thai'),
+        ('Vietnamese', 'Vietnamese'),
     )
 
     food_type_choices = (
-        ('Mi', 'Miscellaneous'),
+        ('Burritos', 'Burritos'),
+        ('Fruit', 'Fruit'),
+        ('Other', 'Other'),
+        ('Rice', 'Rice'),
+        ('Vegetable', 'Vegetable'),
     )
 
     name = models.CharField(max_length=50)
-    category = models.CharField(max_length=4, choices=category_choices, default='Mi')
-    food_type = models.CharField(max_length=4, choices=food_type_choices, default='Mi')
-    rating = models.IntegerField(default=0)
-    thumbnail = models.FileField(upload_to=get_upload_file_name)
+    category = models.CharField(max_length=50, choices=category_choices, default='Other')
+    food_type = models.CharField(max_length=50, choices=food_type_choices, default='Other')
+    rating = MinMaxFloat(max_value=5.0, min_value=0.0, default=3.0)
+    thumbnail = models.FileField(upload_to=get_upload_file_name, null=True, blank=True)
     
     def __str__(self):
         return self.name

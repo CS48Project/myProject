@@ -34,7 +34,7 @@ def WallabyRegistration(request):
 
 def LoginRequest(request):
 	if request.user.is_authenticated():
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect('/accounts/profile/')
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
 		if form.is_valid():

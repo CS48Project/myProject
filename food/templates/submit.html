@@ -2,15 +2,15 @@
 
 {% block content %}
 <div class="page-header">
- 	<h1>Submit <small>Add and item to our ever-growing list.</small></h1>
+ 	<h1>Submit Food <small>Add a food item to our ever-growing list.</small></h1>
 </div>
 
-<form action="/submit/" method="post" enctype="multipart/form-data">{% csrf_token %}
-  <ul>
-    {{ form.as_ul }}
-  </ul>
-
-  <input type="submit" name="submit" value="Sumbit">
+<form action="/food/submit/" method="post">
+	{% csrf_token %}
+	<div>
+    	{{ form.as_p }}
+    </div>
+ 	<input type="submit" name="submit" value="Submit">
 </form>
 
 {% endblock %}
