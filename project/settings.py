@@ -30,9 +30,6 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
                  os.path.join(BASE_DIR, 'food/templates'),
                  os.path.join(BASE_DIR, 'authentication/templates')]
 
-# provide get_profile()
-AUTH_PROFILE_MODULE = 'authentication.Wallaby'
-
 
 # Application definition
 
@@ -43,6 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
+    'bootstrap_toolkit',
     'food',
     'authentication',
 )
