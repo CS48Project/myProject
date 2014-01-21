@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.context_processors import csrf
@@ -6,21 +7,20 @@ from food.forms import FoodForm
 from food.models import Food, Category, RandomFood
 
 # Create your views here.
+@login_required
 def submit(request):
-  if request.user.is_authenticated():
-    if request.method == 'POST':
-      form = FoodForm(request.POST, request.FILES)
-      if form.is_valid():
-        form.save()
-        return HttpResponseRedirect('/food/')
-    else:
-      form = FoodForm()
-    args = {}
-    args.update(csrf(request))
-    args['form'] = form
-    return render_to_response('submit.html', args, context_instance=RequestContext(request))
+  if request.method == 'POST':
+    form = FoodForm(request.POST, request.FILES)
+    if form.is_valid():
+      form.save()
+      return HttpResponseRedirect('/food/')
   else:
-    return HttpResponseRedirect('/accounts/login/')
+    form = FoodForm()
+  args = {}
+  args.update(csrf(request))
+  args['form'] = form
+  return render_to_response('submit.html', args,
+                            context_instance=RequestContext(request))
 
 def food_index(request):
   return render_to_response('food_index.html', {'food_index': Food.objects.all()},

@@ -30,6 +30,11 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
                  os.path.join(BASE_DIR, 'food/templates'),
                  os.path.join(BASE_DIR, 'authentication/templates')]
 
+# URL for @login_required decorator to use
+LOGIN_URL = '/accounts/login/'
+
+# redirect authenticated users
+LOGIN_REDIRECT_URL = '/accounts/profile/'
 
 # Application definition
 

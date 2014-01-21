@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from authentication.forms import RegistrationForm, LoginForm
@@ -61,5 +62,6 @@ def registrationsuccess(request):
 	return render_to_response("registrationsuccess.html",
 							  context_instance=RequestContext(request))
 
+@login_required
 def profile(request):
 	return render_to_response("profile.html", context_instance=RequestContext(request))
