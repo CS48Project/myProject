@@ -9,7 +9,7 @@ from food.models import Food, Category, RandomFood
 def submit(request):
   if request.user.is_authenticated():
     if request.method == 'POST':
-      form = FoodForm(request.POST)
+      form = FoodForm(request.POST, request.FILES)
       if form.is_valid():
         form.save()
         return HttpResponseRedirect('/food/')
@@ -47,3 +47,10 @@ def category(request):
   return render_to_response('category.html',
                            {'category': Category.objects.get(id=category_id)},
                             context_instance=RequestContext(request))
+
+def like_food(request, food_id):
+  if food_id:
+    f = Food.objects.get(id=food_id)
+    f.likes += 1
+    f.save()
+  return HttpResponseRedirect('/food/%s' % food_id)

@@ -5,7 +5,7 @@
  	<h1>Submit Food <small>Add a food item to our ever-growing list.</small></h1>
 </div>
 
-<form action="/food/submit/" method="post">
+<form action="/food/submit/" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	<div>
     	{{ form.as_p }}

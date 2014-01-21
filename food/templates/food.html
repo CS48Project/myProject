@@ -6,12 +6,19 @@
 	<h1>{{ food.name }} <small>A description of this food item.</small></h1>
 </div>
 
-<p>Restaurant: {{ food.restaurant }}</p>
-<p>Category: {{ food.category }}</p>
-<p>Rating: {{ food.rating }}</p>
+<div>
+	{% if food.picture %}
+		<p><img src="/static/assets/{{ food.picture }}" width="200" /></p>
+	{% endif %}
+	
+	<p>Restaurant: {{ food.restaurant }}</p>
+	<p>Category: {{ food.category }}</p>
+	<p>Rating: {{ food.rating }}</p>
+	<p><a href="/food/like/{{ food.id }}" class="btn btn-xs btn-success">Like ({{ food.likes }})</a></p>
+</div>
 
-{% if food.thumbnail %}
-	<p><img src="/static/assets/{{ food.thumbnail }}" width="200" /></p>
-{% endif %}
+<div>
+	<h3><a href="/food/">Food Index</a></h3>
+</div>
 
 {% endblock %}

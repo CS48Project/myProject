@@ -1,9 +1,8 @@
 from django.db import models
-from time import time
 from random import choice
 
 def get_upload_file_name(instance, filename):
-    return "uploaded_files/%s_%s" % (str(time()).replace('.','_'), filename)
+    return "uploaded_files/%s" % (filename)
 
 # Create your models here.
 class MinMaxFloat(models.FloatField):
@@ -46,7 +45,8 @@ class Food(models.Model):
     category = models.CharField(max_length=50, choices=category_choices, default='Other')
     restaurant = models.CharField(max_length=50)
     rating = MinMaxFloat(max_value=5.0, min_value=0.0, default=3.0)
-    thumbnail = models.FileField(upload_to=get_upload_file_name, null=True, blank=True)
+    likes = models.IntegerField(default=0)
+    picture = models.FileField(upload_to=get_upload_file_name)
     
     def __str__(self):
         return self.name

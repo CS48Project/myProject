@@ -9,7 +9,6 @@
 	<h3><a href="/food/submit/">Submit Food Item</a></h3>
 </div>
 
-<div class="row">
 {% if food_index.count > 0 %}
 
 	{% for food in food_index %}
@@ -19,16 +18,17 @@
 				<li>Restaurant: {{ food.restaurant }}</li>
 				<li>Category: {{ food.category }}</li>
 				<li>Rating: {{ food.rating }}</li>
+				<li>{{ food.likes }} {% if food.likes == 1 %}like{% else %}likes{% endif %}</li>
 			</ul>
 		</div>
 	{% endfor %}
 
 {% else %}
 
-	<div class="col-6 col-sm-6 col-lg-4">
-		<p>None to show!</p>
+	<div>
+		<h2>None to show!</h2>
 	</div>
 
 {% endif %}
-</div>
+
 {% endblock %}
