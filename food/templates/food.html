@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <div class="page-header">
 	<h1>{{ food.name }} <small>A description of this food item.</small></h1>
 </div>
@@ -14,11 +15,19 @@
 	<p>Restaurant: {{ food.restaurant }}</p>
 	<p>Category: {{ food.category }}</p>
 	<p>Rating: {{ food.rating }}</p>
-	<p><a href="/food/like/{{ food.id }}" class="btn btn-xs btn-success">Like ({{ food.likes }})</a></p>
+	<p><a href="/food/like/{{ food.id }}" data-placement="top" data-original-title="I like this" class="btn btn-xs btn-success">Like ({{ food.likes }})</a></p>
 </div>
 
 <div>
 	<h3><a href="/food/">Food Index</a></h3>
 </div>
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+	$('.btn').tooltip()
+</script>
 
 {% endblock %}
