@@ -9,22 +9,23 @@
 <form role="form" action="" method="post">
 	{% csrf_token %}
 	{% if form.errors %}
-		<p>Please correct the following fields:</p>
+		<p><font color="red">Please correct the following fields:</font></p>
 	{% endif %}
 	<div class="login-div">
 		<p><label for="username" {% if form.username.errors %} class="error" {% endif %}>User name</label></p>
 		<p>{{ form.username }}</p>
 		{% if form.username.errors %}
-			<p class="error">{{ form.username.errors }}</p>
+			<p class="error"><font color="red">{{ form.username.errors }}</font></p>
 		{% endif %}
 	</div>
 	<div class="login-div">
 		<p><label for="password" {% if form.password.errors %} class="error" {% endif %}>Password</label></p>
 		<p>{{ form.password }}</p>
 		{% if form.password.errors %}
-			<p class="error">{{ form.password.errors }}</p>
+			<p class="error"><font color="red">{{ form.password.errors }}</font></p>
 		{% endif %}
 	</div>
+	<p><a href="/">Forgot password?</a></p>
 	<p><input type="submit" alt="login" /></p>
 </form>
 

@@ -5,12 +5,56 @@
  	<h1>Submit Food <small>Add a food item to our ever-growing list.</small></h1>
 </div>
 
-<form action="/food/submit/" method="post" enctype="multipart/form-data">
+<p><em>A * denotes a required field.</em></p>
+
+<form role="form" action="/food/submit/" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	<div>
-    	{{ form.as_p }}
-    </div>
- 	<input type="submit" name="submit" value="Submit">
+	{% if form.errors %}
+		<p><font color="red">Please correct the following fields:</font></p>
+	{% endif %}
+	<div class="submit-div">
+		<p><label for="name" {% if form.name.errors %} class="error" {% endif %}>* Name</label></p>
+		<p>{{ form.name }}</p>
+		{% if form.name.errors %}
+			<p class="error"><font color="red">{{ form.name.errors }}</font></p>
+		{% endif %}
+	</div>
+	<div class="submit-div">
+		<p><label for="category" {% if form.category.errors %} class="error" {% endif %}>* Category</label></p>
+		<p>{{ form.category }}</p>
+		{% if form.category.errors %}
+			<p class="error"><font color="red">{{ form.category.errors }}</font></p>
+		{% endif %}
+	</div>	
+	<div class="submit-div">
+		<p><label for="restaurant" {% if form.restaurant.errors %} class="error" {% endif %}>* Restaurant</label></p>
+		<p>{{ form.restaurant }}</p>
+		{% if form.restaurant.errors %}
+			<p class="error"><font color="red">{{ form.restaurant.errors }}</font></p>
+		{% endif %}
+	</div>
+	<div class="submit-div">
+		<p><label for="price" {% if form.price.errors %} class="error" {% endif %}>* Price</label></p>
+		<p>${{ form.price }}</p>
+		{% if form.price.errors %}
+			<p class="error"><font color="red">{{ form.price.errors }}</font></p>
+		{% endif %}
+	</div>
+	<div class="submit-div">
+		<p><label for="rating" {% if form.rating.errors %} class="error" {% endif %}>Rating</label></p>
+		<p>{{ form.rating }}</p>
+		{% if form.rating.errors %}
+			<p class="error"><font color="red">{{ form.rating.errors }}</font></p>
+		{% endif %}
+	</div>
+	<div class="submit-div">
+		<p><label for="picture" {% if form.picture.errors %} class="error" {% endif %}>Picture</label></p>
+		<p>{{ form.picture }}</p>
+		{% if form.picture.errors %}
+			<p class="error"><font color="red">{{ form.picture.errors }}</font></p>
+		{% endif %}
+	</div>
+	<p><input type="submit" alt="submit" /></p>
 </form>
 
 {% endblock %}

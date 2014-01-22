@@ -11,12 +11,13 @@
 	<ul>
 		<li>Restaurant: {{ random_food.restaurant }}</li>
 		<li>Category: {{ random_food.category }}</li>
+		<li>Price: ${{ random_food.price }}</li>
 		<li>Rating: {{ random_food.rating }}</li>
 		<li>{{ random_food.likes }} {% if random_food.likes == 1 %}like{% else %}likes{% endif %}</li>
-
-		{% if food.thumbnail %}
-			<p><img src="/static/assets/{{ random_food.thumbnail }}" width="200" /></p>
-		{% endif %}
 	</ul>
+
+		{% if random_food.picture %}
+			<p><img src="/static/assets/{{ random_food.picture }}" width="200" /></p>
+		{% endif %}
 </div>
 {% endblock %}
