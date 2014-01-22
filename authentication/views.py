@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from authentication.forms import RegistrationForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import REDIRECT_FIELD_NAME
 
 # Create your views here.
 def UserRegistration(request):
@@ -28,9 +29,10 @@ def UserRegistration(request):
 		return render_to_response('register.html', context,
 								  context_instance=RequestContext(request))
 
-def LoginRequest(request):
+def LoginRequest(request, redirect_field_name=REDIRECT_FIELD_NAME):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('/accounts/profile/')
+	redirect_to = request.REQUEST.get(redirect_field_name, '')
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
 		if form.is_valid():
@@ -39,7 +41,7 @@ def LoginRequest(request):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				login(request, user)
-				return HttpResponseRedirect('/accounts/profile/')
+				return HttpResponseRedirect(redirect_to)
 			else:
 				return render_to_response('login.html', {'form': form},
 										  context_instance=RequestContext(request))
