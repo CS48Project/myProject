@@ -49,6 +49,7 @@ def category(request, category_id):
                              'food_index': Food.objects.all()},
                             context_instance=RequestContext(request))
 
+@login_required
 def like_food(request, food_id):
   if food_id:
     f = Food.objects.get(id=food_id)
