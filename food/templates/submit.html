@@ -5,50 +5,50 @@
  	<h1>Submit Food <small>Add a food item to our ever-growing list.</small></h1>
 </div>
 
+<div class="col-md-3">
 <p><em>A * denotes a required field.</em></p>
-
 <form role="form" action="/food/submit/" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	{% if form.errors %}
 		<p><font color="red">Please correct the following fields:</font></p>
 	{% endif %}
-	<div class="submit-div">
-		<p><label for="name" {% if form.name.errors %} class="error" {% endif %}>* Name</label></p>
+	<div class="form-group {% if form.name.errors %}has-error{% endif %}">
+		<label for="name">* Name</label>
 		<p>{{ form.name }}</p>
 		{% if form.name.errors %}
 			<p class="error"><font color="red">{{ form.name.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="submit-div">
-		<p><label for="category" {% if form.category.errors %} class="error" {% endif %}>* Category</label></p>
+	<div class="form-group {% if form.category.errors %}has-error{% endif %}">
+		<label for="category">* Category</label>
 		<p>{{ form.category }}</p>
 		{% if form.category.errors %}
 			<p class="error"><font color="red">{{ form.category.errors }}</font></p>
 		{% endif %}
 	</div>	
-	<div class="submit-div">
-		<p><label for="restaurant" {% if form.restaurant.errors %} class="error" {% endif %}>* Restaurant</label></p>
+	<div class="form-group {% if form.restaurant.errors %}has-error{% endif %}">
+		<label for="restaurant">* Restaurant</label>
 		<p>{{ form.restaurant }}</p>
 		{% if form.restaurant.errors %}
 			<p class="error"><font color="red">{{ form.restaurant.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="submit-div">
-		<p><label for="price" {% if form.price.errors %} class="error" {% endif %}>* Price</label></p>
+	<div class="form-group {% if form.price.errors %}has-error{% endif %}">
+		<label for="price">* Price</label>
 		<p>${{ form.price }}</p>
 		{% if form.price.errors %}
 			<p class="error"><font color="red">{{ form.price.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="submit-div">
-		<p><label for="rating" {% if form.rating.errors %} class="error" {% endif %}>Rating</label></p>
+	<div class="form-group {% if form.rating.errors %}has-error{% endif %}">
+		<label for="rating">Rating</label>
 		<p>{{ form.rating }}</p>
 		{% if form.rating.errors %}
 			<p class="error"><font color="red">{{ form.rating.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="submit-div">
-		<p><label for="picture" {% if form.picture.errors %} class="error" {% endif %}>Picture</label></p>
+	<div class="form-group {% if form.picture.errors %}has-error{% endif %}">
+		<label for="picture">Picture</label>
 		<p>{{ form.picture }}</p>
 		{% if form.picture.errors %}
 			<p class="error"><font color="red">{{ form.picture.errors }}</font></p>
@@ -57,5 +57,6 @@
 	<p class="help-block">Please upload nudes only.</p>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
 
 {% endblock %}

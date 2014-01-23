@@ -6,48 +6,49 @@
 	<h1>Register <small>Create an account!</small></h1>
 </div>
 
+<div class="col-md-3">
 <form role="form" action="" method="post">
 	{% csrf_token %}
 	{% if form.errors %}
 		<p><font color="red">Please correct the following fields:</font></p>
 	{% endif %}
-	<div class="register-div">
-		<p><label for="first_name" {% if form.first_name.errors %} class="error" {% endif %}>First name</label></p>
+	<div class="form-group {% if form.first_name.errors %}has-error{% endif %}">
+		<label for="first_name">First name</label>
 		<p>{{ form.first_name }}</p>
 		{% if form.first_name.errors %}
 			<p class="error"><font color="red">{{ form.first_name.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="register-div">
-		<p><label for="last_name" {% if form.last_name.errors %} class="error" {% endif %}>Last name</label></p>
+	<div class="form-group {% if form.last_name.errors %}has-error{% endif %}">
+		<label for="last_name">Last name</label>
 		<p>{{ form.last_name }}</p>
 		{% if form.last_name.errors %}
 			<p class="error"><font color="red">{{ form.last_name.errors }}</font></p>
 		{% endif %}
 	</div>	
-	<div class="register-div">
-		<p><label for="email" {% if form.email.errors %} class="error" {% endif %}>Email</label></p>
+	<div class="form-group {% if form.email.errors %}has-error{% endif %}">
+		<label for="email">Email</label>
 		<p>{{ form.email }}</p>
 		{% if form.email.errors %}
 			<p class="error"><font color="red">{{ form.email.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="register-div">
-		<p><label for="username" {% if form.username.errors %} class="error" {% endif %}>User name</label></p>
+	<div class="form-group {% if form.username.errors %}has-error{% endif %}">
+		<label for="username">User name</label>
 		<p>{{ form.username }}</p>
 		{% if form.username.errors %}
 			<p class="error"><font color="red">{{ form.username.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="register-div">
-		<p><label for="password" {% if form.password.errors %} class="error" {% endif %}>Password</label></p>
+	<div class="form-group {% if form.password.errors %}has-error{% endif %}">
+		<label for="password">Password</label>
 		<p>{{ form.password }}</p>
 		{% if form.password.errors %}
 			<p class="error"><font color="red">{{ form.password.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="register-div">
-		<p><label for="password1" {% if form.password1.errors %} class="error" {% endif %}>Verify password</label></p>
+	<div class="form-group {% if form.password1.errors %}has-error{% endif %}">
+		<label for="password1">Verify password</label>
 		<p>{{ form.password1 }}</p>
 		{% if form.password1.errors %}
 			<p class="error"><font color="red">{{ form.password1.errors }}</font></p>
@@ -60,5 +61,6 @@
   	</div>
 	<button type="submit" class="btn btn-primary">Register</button>
 </form>
+</div>
 
 {% endblock %}
