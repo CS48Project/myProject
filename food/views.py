@@ -26,7 +26,7 @@ def food_index(request):
   return render_to_response('food_index.html', {'food_index': Food.objects.all()},
                             context_instance=RequestContext(request))
 
-def food(request, food_id=1):
+def food(request, food_id):
   return render_to_response('food.html', {'food': Food.objects.get(id=food_id)},
                             context_instance=RequestContext(request))
 
@@ -40,12 +40,13 @@ def food_of_the_day(request):
 
 def category_index(request):
   return render_to_response('category_index.html',
-                           {'category_index': Category.objects.all()},
+                            {'category_index': Category.objects.all()},
                             context_instance=RequestContext(request))
 
-def category(request):
+def category(request, category_id):
   return render_to_response('category.html',
-                           {'category': Category.objects.get(id=category_id)},
+                            {'category': Category.objects.get(id=category_id),
+                             'food_index': Food.objects.all()},
                             context_instance=RequestContext(request))
 
 def like_food(request, food_id):

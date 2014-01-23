@@ -18,8 +18,8 @@ class Food(models.Model):
         return self.name
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
-    url_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
+    url_name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name

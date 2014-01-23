@@ -7,5 +7,6 @@ urlpatterns = patterns('',
 	url(r'^foodoftheday/$', 'food.views.food_of_the_day'),
     url(r'^whattoeat/$', 'food.views.what_to_eat'),
     url(r'^categories/$', 'food.views.category_index'),
+    url(r'^categories/(?P<category_id>\d+)/$', 'food.views.category'),
     url(r'^like/(?P<food_id>\d+)/$', 'food.views.like_food'),
 )
