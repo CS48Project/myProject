@@ -40,13 +40,13 @@ def food_of_the_day(request):
 
 def category_index(request):
   return render_to_response('category_index.html',
-                            {'category_index': Category.objects.all()},
+                            {'category_index': Category.objects.order_by('name')},
                             context_instance=RequestContext(request))
 
 def category(request, category_id):
   return render_to_response('category.html',
                             {'category': Category.objects.get(id=category_id),
-                             'food_index': Food.objects.all()},
+                             'food_index': Food.objects.order_by('name')},
                             context_instance=RequestContext(request))
 
 @login_required

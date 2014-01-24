@@ -3,14 +3,12 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 
 class RegistrationForm(ModelForm):
-	username = forms.CharField(label=(u'User name'))
-	first_name = forms.CharField(label=(u'First name'))
-	last_name = forms.CharField(label=(u'Last name'))
-	email = forms.EmailField(label=(u'Email'))
-	password = forms.CharField(label=(u'Password'),
-							   widget=forms.PasswordInput(render_value=False))
-	password1 = forms.CharField(label=(u'Verify password'),
-							    widget=forms.PasswordInput(render_value=False))
+	username = forms.CharField(max_length=50)
+	first_name = forms.CharField(max_length=50)
+	last_name = forms.CharField(max_length=50)
+	email = forms.EmailField()
+	password = forms.CharField(widget=forms.PasswordInput(render_value=False))
+	password1 = forms.CharField(widget=forms.PasswordInput(render_value=False))
 
 	class Meta:
 		model = User
@@ -35,6 +33,6 @@ class RegistrationForm(ModelForm):
 									"Please try again.")
 
 class LoginForm(forms.Form):
-	username = forms.CharField(label=(u'User name'))
-	password = forms.CharField(label=(u'Password'),
+	username = forms.CharField(max_length=50)
+	password = forms.CharField(max_length=50,
 							   widget=forms.PasswordInput(render_value=False))
