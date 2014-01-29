@@ -5,31 +5,19 @@
 	<h1>Food Index <small>A list of all food items.</small></h1>
 </div>
 
-<div>
-	<h3><a href="/food/submit/">Submit Food Item</a></h3>
-</div>
+<h3><a href="/food/submit/">Submit Food Item</a></h3>
 
 {% if food_index.count > 0 %}
-
 	{% for food in food_index %}
-		<div>
-			<h2><a href="/food/{{ food.id }}/">{{ food.name }}</a></h2>
-			<ul>
-				<li>Restaurant: {{ food.restaurant }}</li>
-				<li>Category: {{ food.category }}</li>
-				<li>Price: ${{ food.price }}</li>
-				<li>Rating: {{ food.rating }}</li>
-				<li>{{ food.likes }} {% if food.likes == 1 %}like{% else %}likes{% endif %}</li>
-			</ul>
-		</div>
+		<h2><a href="/food/{{ food.id }}/">{{ food.name }}</a></h2>
+		<ul>
+			<li>Restaurant: {{ food.restaurant }}</li>
+			<li>Category: {{ food.category }}</li>
+			<li>Price: ${{ food.price }}</li>
+			<li>Rating: {{ food.rating }}</li>
+		</ul>
 	{% endfor %}
-
 {% else %}
-
-	<div>
-		<h2>None to show!</h2>
-	</div>
-
+	<h3>None to show!</h3>
 {% endif %}
-
 {% endblock %}

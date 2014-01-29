@@ -2,29 +2,17 @@
 {% load static %}
 
 {% block content %}
-
 <div class="page-header">
 	<h1>{{ food.name }} <small>A description of this food item.</small></h1>
 </div>
 
-<div>
-	{% if food.picture %}
-		<p><img src="/static/assets/{{ food.picture }}" width="200" /></p>
-	{% endif %}
+{% if food.picture %}
+	<p><img src="/static/assets/{{ food.picture }}" width="200" /></p>
+{% endif %}
 	
-	<p>Restaurant: {{ food.restaurant }}</p>
-	<p>Category: {{ food.category }}</p>
-	<p>Price: ${{ food.price }}</p>
-	<p>Rating: {{ food.rating }}</p>
-	<p><a href="/food/like/{{ food.id }}" data-placement="top" data-original-title="I like this" class="btn btn-xs btn-success">Like ({{ food.likes }})</a></p>
-</div>
-
-{% endblock %}
-
-{% block script %}
-
-<script>
-	$('.btn').tooltip()
-</script>
-
+<p>Restaurant: {{ food.restaurant }}</p>
+<p>Category: {{ food.category }}</p>
+<p>Price: ${{ food.price }}</p>
+<p>Rating: {{ food.rating }}</p>
+<p><a href="/food/categories/{{ food.category.slug }}/">Back to {{ food.category }}</a></p>
 {% endblock %}

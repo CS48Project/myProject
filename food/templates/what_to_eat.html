@@ -6,18 +6,15 @@
 	<h1>What to Eat <small>Here is a random food item for you!</small></h1>
 </div>
 
-<div>
-	<h2><a href="/food/{{ random_food.id }}/">{{ random_food.name }}</a></h2>
-	<ul>
-		<li>Restaurant: {{ random_food.restaurant }}</li>
-		<li>Category: {{ random_food.category }}</li>
-		<li>Price: ${{ random_food.price }}</li>
-		<li>Rating: {{ random_food.rating }}</li>
-		<li>{{ random_food.likes }} {% if random_food.likes == 1 %}like{% else %}likes{% endif %}</li>
+<h2><a href="/food/categories/{{ random_food.category.slug }}/{{ random_food.slug }}/{{ random_food.id }}/">{{ random_food.name }}</a></h2>
+<ul>
+	<li>Restaurant: {{ random_food.restaurant }}</li>
+	<li>Category: {{ random_food.category }}</li>
+	<li>Price: ${{ random_food.price }}</li>
+	<li>Rating: {{ random_food.rating }}</li>
 	</ul>
 
-		{% if random_food.picture %}
-			<p><img src="/static/assets/{{ random_food.picture }}" width="200" /></p>
-		{% endif %}
-</div>
+{% if random_food.picture %}
+	<p><img src="/static/assets/{{ random_food.picture }}" width="200" /></p>
+{% endif %}
 {% endblock %}

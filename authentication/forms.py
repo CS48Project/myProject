@@ -9,10 +9,12 @@ class RegistrationForm(ModelForm):
 	email = forms.EmailField()
 	password = forms.CharField(widget=forms.PasswordInput(render_value=False))
 	password1 = forms.CharField(widget=forms.PasswordInput(render_value=False))
+	agree = forms.BooleanField(error_messages={'required': 'You must agree to the Terms of Use.'})
 
 	class Meta:
 		model = User
-		fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password1']
+		fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password1',
+				  'agree']
 
 	def clean_username(self):
 		username = self.cleaned_data['username']
@@ -36,3 +38,4 @@ class LoginForm(forms.Form):
 	username = forms.CharField(max_length=50)
 	password = forms.CharField(max_length=50,
 							   widget=forms.PasswordInput(render_value=False))
+	remember = forms.BooleanField(required=False)

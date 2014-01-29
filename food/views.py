@@ -13,7 +13,7 @@ def submit(request):
     form = FoodForm(request.POST, request.FILES)
     if form.is_valid():
       form.save()
-      return HttpResponseRedirect('/food/')
+      return HttpResponseRedirect('/food/submitsuccess/')
   else:
     form = FoodForm()
   args = {}
@@ -23,15 +23,21 @@ def submit(request):
                             context_instance=RequestContext(request))
 
 def food_index(request):
-  return render_to_response('food_index.html', {'food_index': Food.objects.all()},
+  food_index = Food.objects.order_by('name')
+  context = {'food_index': food_index}
+  return render_to_response('food_index.html', context,
                             context_instance=RequestContext(request))
 
-def food(request, food_id):
-  return render_to_response('food.html', {'food': Food.objects.get(id=food_id)},
+def food(request, categoryslug, foodslug, food_id):
+  food = Food.objects.get(id=food_id)
+  context = {'food': food}
+  return render_to_response('food.html', context,
                             context_instance=RequestContext(request))
 
 def what_to_eat(request):
-  return render_to_response('what_to_eat.html', {'random_food': RandomFood()},
+  random_food = RandomFood()
+  context = {'random_food': random_food}
+  return render_to_response('what_to_eat.html', context,
                             context_instance=RequestContext(request))
 
 def food_of_the_day(request):
@@ -39,20 +45,18 @@ def food_of_the_day(request):
                             context_instance=RequestContext(request))
 
 def category_index(request):
-  return render_to_response('category_index.html',
-                            {'category_index': Category.objects.order_by('name')},
+  category_index = Category.objects.order_by('name')
+  context = {'category_index': category_index}
+  return render_to_response('category_index.html', context,
                             context_instance=RequestContext(request))
 
-def category(request, category_id):
-  return render_to_response('category.html',
-                            {'category': Category.objects.get(id=category_id),
-                             'food_index': Food.objects.order_by('name')},
+def category(request, categoryslug):
+  category = Category.objects.get(slug=categoryslug)
+  food_list = Food.objects.filter(category=category).order_by('name')
+  context = {'category': category, 'food_list': food_list}
+  return render_to_response('category.html', context,
                             context_instance=RequestContext(request))
 
-@login_required
-def like_food(request, food_id):
-  if food_id:
-    f = Food.objects.get(id=food_id)
-    f.likes += 1
-    f.save()
-  return HttpResponseRedirect('/food/%s' % food_id)
+def submit_success(request):
+  return render_to_response('submit_success.html',
+                            context_instance=RequestContext(request))

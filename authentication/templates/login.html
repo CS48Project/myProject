@@ -26,13 +26,17 @@
 			<p class="error"><font color="red">{{ form.password.errors }}</font></p>
 		{% endif %}
 	</div>
-	<p><a href="/">Forgot password?</a></p>
-	<div class="checkbox">
-    	<label>
-      		<input type="checkbox"> Remember me
+	<p><a href="#">Forgot password?</a></p>
+	<div class="checkbox {% if form.remember.errors %}has-error{% endif %}">
+    	<label for="remember">
+      		{{ form.remember }} Remember me
     	</label>
+    	{% if form.remember.errors %}
+			<p class="error"><font color="red">{{ form.remember.errors }}</font></p>
+		{% endif %}
   	</div>
-	<button type="submit" class="btn btn-primary">Login</button>
+	<p><button type="submit" class="btn btn-primary">Login</button></p>
+	<p>Don't have an account yet? Click <a href="/accounts/register/">here</a> to register.</p>
 </form>
 </div>
 

@@ -54,12 +54,15 @@
 			<p class="error"><font color="red">{{ form.password1.errors }}</font></p>
 		{% endif %}
 	</div>
-	<div class="checkbox">
-    	<label>
-      		<input type="checkbox"> I have read and agree to the <a href="/terms/">Terms of Use</a>.
+	<div class="checkbox {% if form.agree.errors %}has-error{% endif %}">
+    	<label for="agree">
+      		{{ form.agree }} I have read and agree to the <a href="/terms/">Terms of Use</a>.
     	</label>
+    	{% if form.agree.errors %}
+			<p class="error"><font color="red">{{ form.agree.errors }}</font></p>
+		{% endif %}
   	</div>
-	<button type="submit" class="btn btn-primary">Register</button>
+	<p><button type="submit" class="btn btn-primary">Register</button></p>
 </form>
 </div>
 

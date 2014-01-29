@@ -6,9 +6,6 @@
 </div>
 
 {% for category in category_index %}
-	<div>
-		<h2><a href="/food/categories/{{ category.id }}/">{{ category.name }}</a></h2>
-	</div>
+	<h2><a href="/food/categories/{{ category.slug }}/">{{ category.name }}</a></h2>
 {% endfor %}
-
 {% endblock %}
