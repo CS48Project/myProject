@@ -1,4 +1,4 @@
-{% extends "../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 <div class="page-header">
@@ -9,7 +9,7 @@
 
 {% if food_index.count > 0 %}
 	{% for food in food_index %}
-		<h2><a href="/food/{{ food.id }}/">{{ food.name }}</a></h2>
+		<h2><a href="/food/categories/{{ food.category.slug }}/{{ food.slug }}/{{ food.id }}/">{{ food.name }}</a></h2>
 		<ul>
 			<li>Restaurant: {{ food.restaurant }}</li>
 			<li>Category: {{ food.category }}</li>

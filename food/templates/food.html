@@ -1,5 +1,7 @@
-{% extends "../templates/base.html" %}
+{% extends "base.html" %}
+
 {% load static %}
+{% load ratings_tags %}
 
 {% block content %}
 <div class="page-header">
@@ -12,7 +14,21 @@
 	
 <p>Restaurant: {{ food.restaurant }}</p>
 <p>Category: {{ food.category }}</p>
-<p>Price: ${{ food.price }}</p>
-<p>Rating: {{ food.rating }}</p>
+<p>Price: ${{ food.price|floatformat:2 }}</p>
+
+{% get_rating_score for food as score %}
+{% if score %}
+    <p>Rating: {{ score.average|floatformat }}</p>
+    <p># of Ratings: {{ score.num_votes }}</p>
+{% else %}
+    <p>No ratings for {{ food }} yet. Be the first!</p>
+{% endif %}
+
+{% get_rating_form for food as rating_form %}
+<form action="{% url 'ratings_vote' %}" method="post">
+    {% csrf_token %}
+    <p>{{ rating_form }}</p>
+    <p><button type="submit" class="btn btn-primary">Vote &rarr;</button></p>
+</form>
 <p><a href="/food/categories/{{ food.category.slug }}/">Back to {{ food.category }}</a></p>
 {% endblock %}

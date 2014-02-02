@@ -9,6 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <style>
+      #content {
+        min-height: 830px;
+        height: auto;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -60,13 +66,12 @@
       </div><!-- /.navbar-collapse -->
     </nav>
 
-    <div class="container">
+    <div class="container" id="content">
       {% block content %}
       {% endblock %}
     </div>
 
     <div class="container">
-      <br /><br /><br /><br /><br /><br />
       <footer class="footer">
         <div>
           <a class="footer-link" href="/about/">About</a>

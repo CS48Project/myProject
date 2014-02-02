@@ -1,5 +1,7 @@
-{% extends "../templates/base.html" %}
+{% extends "base.html" %}
+
 {% load static %}
+{% load ratings_tags %}
 
 {% block content %}
 <div class="page-header">
@@ -10,9 +12,16 @@
 <ul>
 	<li>Restaurant: {{ random_food.restaurant }}</li>
 	<li>Category: {{ random_food.category }}</li>
-	<li>Price: ${{ random_food.price }}</li>
-	<li>Rating: {{ random_food.rating }}</li>
-	</ul>
+	<li>Price: ${{ random_food.price|floatformat:2 }}</li>
+	
+	{% get_rating_score for random_food as score %}
+	{% if score %}
+	    <li>Rating: {{ score.average|floatformat }}</li>
+	    <li># of Ratings: {{ score.num_votes }}</li>
+	{% else %}
+	    <li>No ratings for {{ random_food }} yet. Rate it <a href="/food/categories/{{ random_food.category.slug }}/{{ random_food.slug }}/{{ random_food.id }}/">here</a>!</li>
+	{% endif %}
+</ul>
 
 {% if random_food.picture %}
 	<p><img src="/static/assets/{{ random_food.picture }}" width="200" /></p>

@@ -1,7 +1,6 @@
-{% extends "../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-
 <div class="page-header">
 	<h1>Profile <small>An overview of your user profile.</small></h1>
 </div>
@@ -9,5 +8,4 @@
 <h3>{{ user.username }}</h3>
 <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
 <p>Email: {{ user.email }}</p>
-
 {% endblock %}

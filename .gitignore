@@ -1,5 +1,4 @@
 *.sqlite3
 *.pyc
-*.jpg
-*.png
-*.ico
+static/
+assets/

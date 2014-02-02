@@ -8,10 +8,8 @@ class FoodForm(ModelForm):
                                       empty_label="Pick a category")
 	restaurant = forms.CharField(max_length=50)
 	price = forms.DecimalField(min_value=0, max_digits=5, decimal_places=2)
-	rating = forms.DecimalField(min_value=0, max_value=5, max_digits=2,
-								decimal_places=1, required=False)
 	picture = forms.FileField(required=False)
 
 	class Meta:
 		model = Food
-		fields = ['name', 'category', 'restaurant', 'price', 'rating', 'picture']
+		fields = ['name', 'category', 'restaurant', 'price', 'picture']
