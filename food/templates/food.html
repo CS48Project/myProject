@@ -4,16 +4,24 @@
 {% load ratings_tags %}
 
 {% block content %}
-<div class="page-header">
-	<h1>{{ food.name }} <small>A description of this food item.</small></h1>
-</div>
+<div class = "container">
+	<div class="page-header">
+		<h1 class = "text-center">{{ food.restaurant }} {{ food.name }}</h1>
+	</div>
+<div class = "row">
+	<div class="col-md-1"></div>
+	<div class="col-md-4">
+	{% if food.picture %}
+	<p class = "text-center"><img src="/static/assets/{{ food.picture }}" width="200" /></p>
+	{% endif %}
+	</div>
+	<div class="col-md-1"></div>
 
-{% if food.picture %}
-	<p><img src="/static/assets/{{ food.picture }}" width="200" /></p>
-{% endif %}
-	
-<p>Restaurant: {{ food.restaurant }}</p>
-<p>Category: {{ food.category }}</p>
+	<div class="col-md-6">
+
+
+
+	<p>Category: {{ food.category }}</p>
 <p>Price: ${{ food.price|floatformat:2 }}</p>
 
 {% get_rating_score for food as score %}
@@ -31,4 +39,15 @@
     <p><button type="submit" class="btn btn-primary">Vote &rarr;</button></p>
 </form>
 <p><a href="/food/categories/{{ food.category.slug }}/">Back to {{ food.category }}</a></p>
+
+	</div>
+
+
+</div>
+</div>
+
+
+	
+
+</div>
 {% endblock %}
