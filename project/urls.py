@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^food/', include('food.urls')),
     url(r'^accounts/', include('authentication.urls')),
-    (r'^ratings/', include('ratings.urls')),
+    url(r'^ratings/', include('ratings.urls')),
 
     url(r'^$', 'project.views.home'),
     url(r'^about/$', 'project.views.about'),

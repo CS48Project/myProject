@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from random import choice
 from ratings.handlers import ratings
+from ratings.forms import StarVoteForm
 
 def get_upload_file_name(instance, filename):
     return "uploaded_files/%s" % (filename)
@@ -32,4 +33,4 @@ class Category(models.Model):
 def RandomFood():
     return choice(Food.objects.all())
 
-ratings.register(Food, score_step=0.5)
+ratings.register(Food, score_range=(0.5, 5), score_step=0.5, form_class=StarVoteForm)
