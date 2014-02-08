@@ -1,7 +1,14 @@
 {% extends "base.html" %}
-
 {% load static %}
 {% load ratings_tags %}
+
+{% block extrahead %}
+<script src="{% static 'assets/star-rating/jquery.js' %}" type="text/javascript"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript"></script>
+<link href="{% static 'assets/star-rating/jquery.rating.css' %}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{% static 'assets/star-rating/jquery.MetaData.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/star-rating/jquery.rating.js' %}"></script>
+{% endblock %}
 
 {% block content %}
 <div class="page-header">
@@ -10,20 +17,19 @@
 
 <h2><a href="/food/categories/{{ random_food.category.slug }}/{{ random_food.slug }}/{{ random_food.id }}/">{{ random_food.name }}</a></h2>
 <ul>
-	<li>Restaurant: {{ random_food.restaurant }}</li>
-	<li>Category: {{ random_food.category }}</li>
-	<li>Price: ${{ random_food.price|floatformat:2 }}</li>
+	<li><strong>Restaurant:</strong> {{ random_food.restaurant }}</li>
+	<li><strong>Category:</strong> {{ random_food.category }}</li>
+	<li><strong>Price:</strong> ${{ random_food.price|floatformat:2 }}</li>
 	
 	{% get_rating_score for random_food as score %}
 	{% if score %}
-	    <li>Rating: {{ score.average|floatformat }}</li>
-	    <li># of Ratings: {{ score.num_votes }}</li>
+	    <li><strong>Rating:</strong> {% show_starrating score 5.5 2 %}&nbsp;({{ score.num_votes }})</li>
 	{% else %}
 	    <li>No ratings for {{ random_food }} yet. Rate it <a href="/food/categories/{{ random_food.category.slug }}/{{ random_food.slug }}/{{ random_food.id }}/">here</a>!</li>
 	{% endif %}
 </ul>
 
 {% if random_food.picture %}
-	<p><img src="/static/assets/{{ random_food.picture }}" width="200" /></p>
+	<p><img src="/static/assets/{{ random_food.picture }}" alt="..." class="img-thumbnail" width="300"></p>
 {% endif %}
 {% endblock %}

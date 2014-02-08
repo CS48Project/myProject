@@ -19,18 +19,17 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-4">
 			{% if food.picture %}
-				<p class="text-center"><img src="/static/assets/{{ food.picture }}" width="200" /></p>
+				<p class="text-center"><img src="/static/assets/{{ food.picture }}" alt="..." class="img-thumbnail"></p>
 			{% endif %}
 		</div>
 		<div class="col-md-1"></div>
 		<div class="col-md-6">
-			<p>Category: {{ food.category }}</p>
-			<p>Price: ${{ food.price|floatformat:2 }}</p>
+			<p><strong>Category:</strong> {{ food.category }}</p>
+			<p><strong>Price:</strong> ${{ food.price|floatformat:2 }}</p>
 
 			{% get_rating_score for food as score %}
 			{% if score %}
-    			<p>Rating: {{ score.average|floatformat }}</p>
-    			<p># of Ratings: {{ score.num_votes }}</p>
+    			<p><strong>Rating:</strong> {{ score.average|floatformat }}</p>
 			{% else %}
     			<p>No ratings for {{ food }} yet. Be the first!</p>
 			{% endif %}
@@ -38,8 +37,7 @@
 			{% get_rating_form for food as rating_form %}
 			<form action="{% url 'ratings_vote' %}" method="post">
     			{% csrf_token %}
-    			<p>{{ rating_form }}</p>
-    			<br />
+    			<p>{{ rating_form }}&nbsp;({{ score.num_votes }})</p>
     			<p><button type="submit" class="btn btn-primary">Vote &rarr;</button></p>
 			</form>
 			<p><a href="/food/categories/{{ food.category.slug }}/">Back to {{ food.category }}</a></p>

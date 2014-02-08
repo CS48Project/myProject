@@ -1,11 +1,23 @@
 {% extends "base.html" %}
+{% load ratings_tags %}
 
 {% block content %}
 <div class="page-header">
 	<h1>Profile <small>An overview of your user profile.</small></h1>
 </div>
 
-<h3>{{ user.username }}</h3>
-<p>Name: {{ user.first_name }} {{ user.last_name }}</p>
-<p>Email: {{ user.email }}</p>
+<h3>{{ user.username }}</h3><br>
+
+<address>
+  <strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}<br>
+  <strong>Email:</strong> <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+</address>
+
+<strong>Recent votes:</strong>
+{% get_latest_votes_by user as latest_votes %}
+<ul>
+	{% for vote in latest_votes|slice:":10" %}
+    	<li>{{ vote.content_object }}: {{ vote.score }}</li>
+	{% endfor %}
+</ul>
 {% endblock %}
