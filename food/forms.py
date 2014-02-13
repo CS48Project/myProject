@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from food.models import Food, Category
+from food.models import *
 
 class FoodForm(ModelForm):
 	name = forms.CharField(max_length=50)

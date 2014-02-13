@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.context_processors import csrf
 from food.forms import FoodForm
-from food.models import Food, Category, RandomFood
+from food.models import *
 
 # Create your views here.
 @login_required

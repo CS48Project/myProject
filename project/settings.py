@@ -33,6 +33,7 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
 # URL for @login_required decorator to use
 LOGIN_URL = '/accounts/login/'
 
+SITE_ID = 1
 
 # Application definition
 
@@ -42,10 +43,12 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'food',
     'authentication',
     'ratings',
+    'django_comments',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,6 +66,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -85,7 +89,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 
