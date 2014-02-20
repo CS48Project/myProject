@@ -13,4 +13,3 @@ Extra notes:
 
 Known issues/bugs:
 1. For now, the 'Food of the Day' link won't display a food item when clicked on. This will be implemented later.
-2. Comments on the food items' pages are listed from oldest-newest. We plan to reverse this order.
