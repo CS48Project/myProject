@@ -20,7 +20,9 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-4">
 			{% if food.picture %}
-				<p class="text-center"><img src="/static/assets/{{ food.picture }}" alt="..." class="img-thumbnail"></p>
+				<p class="text-center"><img src="/static/assets/{{ food.picture }}" alt="..." class="img-thumbnail" width="250"></p>
+			{% else %}
+				<p class="text-center"><img src="{% static "assets/images/defaultPicture.png" %}" alt="..." class="img-thumbnail" width="200"></p>
 			{% endif %}
 		</div>
 		<div class="col-md-1"></div>

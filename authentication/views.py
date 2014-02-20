@@ -4,11 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from authentication.forms import RegistrationForm, LoginForm
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
 
 # Create your views here.
 def UserRegistration(request):
+	"""
+	Displays the user registration form and handles the user creation action.
+	"""
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
@@ -23,13 +25,16 @@ def UserRegistration(request):
 			return render_to_response('register.html', {'form': form},
 									  context_instance=RequestContext(request))
 	else:
-		''' user is not submitting form, show them black registration form '''
+		"""User is not submitting form, show them a black registration form."""
 		form = RegistrationForm()
 		context = {'form': form}
 		return render_to_response('register.html', context,
 								  context_instance=RequestContext(request))
 
 def LoginRequest(request, redirect_field_name=REDIRECT_FIELD_NAME):
+	"""
+	Displays the login form and handles the login action.
+	"""
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('/accounts/profile/')
 	redirect_to = request.REQUEST.get(redirect_field_name, '')
@@ -49,21 +54,30 @@ def LoginRequest(request, redirect_field_name=REDIRECT_FIELD_NAME):
 			return render_to_response('login.html', {'form': form},
 									  context_instance=RequestContext(request))
 	else:
-		''' user is not submitting form, show login form '''
+		"""User is not submitting form, show them a login form."""
 		form = LoginForm()
 		context = {'form': form}
 		return render_to_response('login.html', context,
 								  context_instance=RequestContext(request))
 
 def LogoutRequest(request):
+	"""
+	Logs out the user.
+	"""
 	logout(request)
 	return render_to_response("logoutsuccess.html",
 							  context_instance=RequestContext(request))
 
 def registrationsuccess(request):
+	"""
+	Lets the user know they have successfully created an account.
+	"""
 	return render_to_response("registrationsuccess.html",
 							  context_instance=RequestContext(request))
 
 @login_required
 def profile(request):
+	"""
+	Displays the user's profile information. Requires user to be logged in.
+	"""
 	return render_to_response("profile.html", context_instance=RequestContext(request))

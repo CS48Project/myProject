@@ -1,5 +1,5 @@
 <dl id="comments">
-  {% for comment in comment_list %}
+  {% for comment in comment_list reversed %}
     <dt id="c{{ comment.id }}">
         {{ comment.submit_date }} - {{ comment.name }}
     </dt>
