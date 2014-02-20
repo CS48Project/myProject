@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^categories/$', 'food.views.category_index'),
     url(r'^categories/(?P<categoryslug>.*)/$', 'food.views.category'),
     url(r'^submitsuccess/$', 'food.views.submit_success'),
+    url(r'^search/$', 'food.views.search_food'),
 )

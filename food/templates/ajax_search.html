@@ -1,0 +1,5 @@
+{% if food.count > 0 %}
+	{% for f in food %}
+		<li><a href="/food/categories/{{ f.object.category.slug }}/{{ f.object.slug }}/{{ f.object.id }}/">{{ f.object.name }}</a></li>
+	{% endfor %}
+{% endif %}

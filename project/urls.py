@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('authentication.urls')),
     url(r'^ratings/', include('ratings.urls')),
     url(r'^comments/', include('django_comments.urls')),
+    url(r'^search/', include('haystack.urls')),
 
     url(r'^$', 'project.views.home'),
     url(r'^about/$', 'project.views.about'),

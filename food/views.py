@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.core.context_processors import csrf
 from food.forms import FoodForm
 from food.models import *
+from haystack.query import SearchQuerySet
 
 # Create your views here.
 @login_required
@@ -32,6 +33,7 @@ def food_index(request):
   """
   food_index = Food.objects.order_by('name')
   context = {'food_index': food_index}
+  context.update(csrf(request))
   return render_to_response('food_index.html', context,
                             context_instance=RequestContext(request))
 
@@ -86,4 +88,10 @@ def submit_success(request):
   been successfully submitted.
   """
   return render_to_response('submit_success.html',
+                            context_instance=RequestContext(request))
+
+def search_food(request):
+  food = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
+  context = {'food': food}
+  return render_to_response('ajax_search.html', context,
                             context_instance=RequestContext(request))
