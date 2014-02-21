@@ -41,6 +41,8 @@ def LoginRequest(request, redirect_field_name=REDIRECT_FIELD_NAME):
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
 		if form.is_valid():
+			if not form.cleaned_data.get('remember'):
+				request.session.set_expiry(0)
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
 			user = authenticate(username=username, password=password)

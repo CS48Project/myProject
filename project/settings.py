@@ -35,6 +35,8 @@ LOGIN_URL = '/accounts/login/'
 
 SITE_ID = 1
 
+SESSION_COOKIE_AGE = 360
+
 WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh_index')
 
 HAYSTACK_CONNECTIONS = {
