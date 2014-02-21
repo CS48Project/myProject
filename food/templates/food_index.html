@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load ratings_tags %}
 
 {% block content %}
 <div class="page-header">
@@ -9,12 +10,13 @@
 
 {% if food_index.count > 0 %}
 	{% for food in food_index %}
-		<h2><a href="/food/categories/{{ food.category.slug }}/{{ food.slug }}/{{ food.id }}/">{{ food.name }}</a></h2>
+		{% get_rating_score for food as score %}
+		<h2><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></h2>
 		<ul>
 			<li>Restaurant: {{ food.restaurant }}</li>
 			<li>Category: {{ food.category }}</li>
 			<li>Price: ${{ food.price }}</li>
-			<li>Rating: {{ food.rating }}</li>
+			<li>Rating: {{ score.average|floatformat }}</li>
 		</ul>
 	{% endfor %}
 {% else %}

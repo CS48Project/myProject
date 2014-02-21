@@ -6,5 +6,7 @@
     <dd>
         <p>{{ comment.comment }}</p>
     </dd>
+  {% empty %}
+  	<h4>No comments yet!</h4>
   {% endfor %}
 </dl>

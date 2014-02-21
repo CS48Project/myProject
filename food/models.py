@@ -31,6 +31,10 @@ class Food(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Food, self).save(*args, **kwargs)
+
+    # Returns the Food object's URL.
+    def get_absolute_url(self):
+        return "/food/categories/" + str(self.category.slug) + "/" + str(self.slug) + "/" + str(self.id) + "/"
     
     # Define the unicode version of a Food object.
     def __str__(self):
@@ -44,6 +48,10 @@ class Category(models.Model):
     """
     name = models.CharField(max_length=50)
     slug = models.SlugField()
+
+    # Returns the Category object's URL.
+    def get_absolute_url(self):
+        return "/food/categories/" + str(self.slug) + "/"
 
     # Define the unicode version of a Category object.
     def __str__(self):
