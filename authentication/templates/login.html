@@ -5,37 +5,37 @@
 	<h1>Login <small>Sign in to your account!</small></h1>
 </div>
 
-<div class="col-md-12">
-<form role="form" action="" method="post">
-	{% csrf_token %}
-	{% if form.errors %}
-		<p><font color="red">Please correct the following fields:</font></p>
-	{% endif %}
-	<div class="form-group {% if form.username.errors %}has-error{% endif %}">
-		<label for="username">User name</label>
-		<p>{{ form.username }}</p>
-		{% if form.username.errors %}
-			<p class="error"><font color="red">{{ form.username.errors }}</font></p>
+<div class="container">
+	<form role="form" action="" method="post">
+		{% csrf_token %}
+		{% if form.errors %}
+			<p><font color="red">Please correct the following fields:</font></p>
 		{% endif %}
-	</div>
-	<div class="form-group {% if form.password.errors %}has-error{% endif %}">
-		<label for="password">Password</label>
-		<p>{{ form.password }}</p>
-		{% if form.password.errors %}
-			<p class="error"><font color="red">{{ form.password.errors }}</font></p>
-		{% endif %}
-	</div>
-	<p><a href="#">Forgot password?</a></p>
-	<div class="checkbox {% if form.remember.errors %}has-error{% endif %}">
-    	<label for="remember">
-      		{{ form.remember }} Remember me
-    	</label>
-    	{% if form.remember.errors %}
-			<p class="error"><font color="red">{{ form.remember.errors }}</font></p>
-		{% endif %}
-  	</div>
-	<p><button type="submit" class="btn btn-primary">Login</button></p>
-	<p>Don't have an account yet? Click <a href="/accounts/register/">here</a> to register.</p>
-</form>
+		<div class="form-group">
+			<label for="username">User name</label>
+			<p>{{ form.username }}</p>
+			{% if form.username.errors %}
+				<p class="error"><font color="red">{{ form.username.errors }}</font></p>
+			{% endif %}
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<p>{{ form.password }}</p>
+			{% if form.password.errors %}
+				<p class="error"><font color="red">{{ form.password.errors }}</font></p>
+			{% endif %}
+		</div>
+		<p><a href="#">Forgot password?</a></p>
+		<div class="checkbox">
+	    	<label for="remember">
+	      		{{ form.remember }} Remember me
+	    	</label>
+	    	{% if form.remember.errors %}
+				<p class="error"><font color="red">{{ form.remember.errors }}</font></p>
+			{% endif %}
+	  	</div>
+		<p><button type="submit" class="btn btn-primary">Login</button></p>
+		<p>Don't have an account yet? Click <a href="/accounts/register/">here</a> to register.</p>
+	</form>
 </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 """
-Models (Classes) associated with the 'food' app
+Models (classes) associated with the 'food' app
 """
 
 from django.db import models

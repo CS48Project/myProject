@@ -10,13 +10,17 @@
 
 {% if food_index.count > 0 %}
 	{% for food in food_index %}
-		{% get_rating_score for food as score %}
 		<h2><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></h2>
 		<ul>
 			<li>Restaurant: {{ food.restaurant }}</li>
 			<li>Category: {{ food.category }}</li>
-			<li>Price: ${{ food.price }}</li>
-			<li>Rating: {{ score.average|floatformat }}</li>
+			<li>Price: ${{ food.price|floatformat:2 }}</li>
+			{% get_rating_score for food as score %}
+			{% if score %}
+				<li>Rating: {{ score.average|floatformat }}</li>
+			{% else %}
+				<li>No ratings for {{ food }} yet. Be the first!</li>
+			{% endif %}
 		</ul>
 	{% endfor %}
 {% else %}

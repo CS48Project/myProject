@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+"""
+manage.py - Used for running commands
+"""
 import os
 import sys
 

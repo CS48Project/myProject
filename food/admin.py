@@ -1,3 +1,7 @@
+"""
+Defines behavior of 'food' models within the admin backend
+"""
+
 from django.contrib import admin
 from food.models import Food, Category
 
@@ -10,5 +14,6 @@ class FoodAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('name',)}
 
+# Register the Food and Category models with the admin backend.
 admin.site.register(Food, FoodAdmin)
 admin.site.register(Category, CategoryAdmin)

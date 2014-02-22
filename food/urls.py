@@ -1,3 +1,7 @@
+"""
+URLs associated with the 'food' app
+"""
+
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',

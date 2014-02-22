@@ -1,3 +1,7 @@
+"""
+Views associated with the 'food' app
+"""
+
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
