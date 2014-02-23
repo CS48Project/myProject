@@ -30,6 +30,14 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
                  os.path.join(BASE_DIR, 'food/templates'),
                  os.path.join(BASE_DIR, 'authentication/templates')]
 
+AUTH_PROFILE_MODULE = 'django.contrib.auth.models.User'
+MAILER_EMAIL_BACKEND = 'django_ses.SESBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'brandonhammel94@gmail.com'
+EMAIL_HOST_PASSWORD = 'sharlit1'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # URL for @login_required decorator to use
 LOGIN_URL = '/accounts/login/'
 
