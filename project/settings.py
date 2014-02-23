@@ -33,8 +33,8 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
 AUTH_PROFILE_MODULE = 'django.contrib.auth.models.User'
 MAILER_EMAIL_BACKEND = 'django_ses.SESBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'brandonhammel94@gmail.com'
-EMAIL_HOST_PASSWORD = 'sharlit1'
+EMAIL_HOST_USER = 'ivwhattoeat@gmail.com'
+EMAIL_HOST_PASSWORD = 'costanbro'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
