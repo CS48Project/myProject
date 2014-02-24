@@ -41,7 +41,7 @@ def food_index(request):
   return render_to_response('food_index.html', context,
                             context_instance=RequestContext(request))
 
-def food(request, categoryslug, foodslug, food_id):
+def food(request, foodslug, food_id):
   """
   Displays the details of a specific Food object.
   """
@@ -84,6 +84,25 @@ def category(request, categoryslug):
   food_list = Food.objects.filter(category=category).order_by('name')
   context = {'category': category, 'food_list': food_list}
   return render_to_response('category.html', context,
+                            context_instance=RequestContext(request))
+
+def restaurant_index(request):
+  """
+  Displays a list of all Restaurant objects.
+  """
+  restaurant_index = Restaurant.objects.order_by('name')
+  context = {'restaurant_index': restaurant_index}
+  return render_to_response('restaurant_index.html', context,
+                            context_instance=RequestContext(request))
+
+def restaurant(request, restaurantslug):
+  """
+  Displays a list of Food objects with the specified Restaurant.
+  """
+  restaurant = Restaurant.objects.get(slug=restaurantslug)
+  food_list = Food.objects.filter(restaurant=restaurant).order_by('name')
+  context = {'restaurant': restaurant, 'food_list': food_list}
+  return render_to_response('restaurant.html', context,
                             context_instance=RequestContext(request))
 
 def submit_success(request):

@@ -23,7 +23,7 @@ class Food(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
     category = models.ForeignKey('Category')
-    restaurant = models.CharField(max_length=50)
+    restaurant = models.ForeignKey('Restaurant')
     price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     picture = models.FileField(upload_to=get_upload_file_name, blank=True, null=True)
 
@@ -34,7 +34,7 @@ class Food(models.Model):
 
     # Returns the Food object's URL.
     def get_absolute_url(self):
-        return "/food/categories/" + str(self.category.slug) + "/" + str(self.slug) + "/" + str(self.id) + "/"
+        return "/food/" + str(self.slug) + "/" + str(self.id) + "/"
     
     # Define the unicode version of a Food object.
     def __str__(self):
@@ -54,6 +54,23 @@ class Category(models.Model):
         return "/food/categories/" + str(self.slug) + "/"
 
     # Define the unicode version of a Category object.
+    def __str__(self):
+        return self.name
+
+class Restaurant(models.Model):
+    """
+    Defines the state and behavior of a Restaurant object. Users will not be able to
+    directly create a Restaurant object; they will only be able to select a Food
+    object's restaurant on the food submit form.
+    """
+    name = models.CharField(max_length=50)
+    slug = models.SlugField()
+
+    # Returns the Restaurant object's URL.
+    def get_absolute_url(self):
+        return "/food/restaurants/" + str(self.slug) + "/"
+
+    # Define the unicode version of a Restaurant object.
     def __str__(self):
         return self.name
 

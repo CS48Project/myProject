@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+	<h1>Restaurant Index <small>A list of all restaurants.</small></h1>
+</div>
+
+{% for restaurant in restaurant_index %}
+	<h2><a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a></h2>
+{% endfor %}
+{% endblock %}
