@@ -24,3 +24,9 @@ class FoodForm(ModelForm):
 	class Meta:
 		model = Food
 		fields = ['name', 'category', 'restaurant', 'price', 'picture']
+
+class SearchForm(forms.Form):
+	text = forms.CharField(max_length=254)
+	search_category = forms.BooleanField(required=False)
+	search_restaurant = forms.BooleanField(required=False)
+	has_image = forms.BooleanField(required=False)

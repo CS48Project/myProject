@@ -1,5 +1,0 @@
-{% if food.count > 0 %}
-	{% for f in food %}
-		<li><a href="{{ f.object.get_absolute_url }}">{{ f.object.name }}</a></li>
-	{% endfor %}
-{% endif %}

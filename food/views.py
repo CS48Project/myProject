@@ -7,9 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.context_processors import csrf
-from food.forms import FoodForm
+from food.forms import FoodForm, SearchForm
 from food.models import *
-from haystack.query import SearchQuerySet
 
 # Create your views here.
 @login_required
@@ -113,8 +112,33 @@ def submit_success(request):
   return render_to_response('submit_success.html',
                             context_instance=RequestContext(request))
 
-def search_food(request):
-  food = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
-  context = {'food': food}
-  return render_to_response('ajax_search.html', context,
+def search_page(request):
+  if request.method == 'POST':
+    form = SearchForm(request.POST)
+    if form.is_valid():
+      name_results = Food.objects.filter(name__contains=form.cleaned_data['text']).order_by('name')
+      if form.cleaned_data['has_image']:
+        name_results = name_results.exclude(picture='')
+      context = {'form': form, 'name_results': name_results}
+
+      if form.cleaned_data['search_category']:
+        category_results = Food.objects.filter(category__name__contains=form.cleaned_data['text']).order_by('name')
+        if form.cleaned_data['has_image']:
+          category_results = category_results.exclude(picture='')
+        context['category_results'] = category_results
+
+      if form.cleaned_data['search_restaurant']:
+        restaurant_results = Food.objects.filter(restaurant__name__contains=form.cleaned_data['text']).order_by('name')
+        if form.cleaned_data['has_image']:
+          restaurant_results = restaurant_results.exclude(picture='')
+        context['restaurant_results'] = restaurant_results
+
+      return render_to_response('search.html', context,
+                                context_instance=RequestContext(request))
+    else:
+      return render_to_response('search.html', {'form': form},
+                                context_instance=RequestContext(request))
+  form = SearchForm()
+  context = {'form': form}
+  return render_to_response('search.html', context,
                             context_instance=RequestContext(request))

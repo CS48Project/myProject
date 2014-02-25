@@ -45,15 +45,6 @@ SITE_ID = 1
 
 SESSION_COOKIE_AGE = 360
 
-WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh_index')
-
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': WHOOSH_INDEX,
-    },
-}
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -69,8 +60,6 @@ INSTALLED_APPS = (
     'ratings',
     'django_comments',
     'pytz',
-    'whoosh',
-    'haystack',
 )
 
 MIDDLEWARE_CLASSES = (

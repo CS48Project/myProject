@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     url(r'^restaurants/$', 'food.views.restaurant_index'),
     url(r'^restaurants/(?P<restaurantslug>.*)/$', 'food.views.restaurant'),
     url(r'^submitsuccess/$', 'food.views.submit_success'),
-    url(r'^search/$', 'food.views.search_food'),
+    url(r'^search/$', 'food.views.search_page'),
 )
