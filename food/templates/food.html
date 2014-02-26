@@ -14,7 +14,7 @@
 {% block content %}
 <div class="container">
 	<div class="page-header">
-		<h1 class="text-center">{{ food.restaurant }} {{ food.name }}</h1>
+		<h1 class="text-center"><a href = "{{ food.restaurant.get_absolute_url }}" >{{ food.restaurant }}</a> {{ food.name }}</h1>
 	</div>
 	<div class="row">
 		<div class="col-md-1"></div>
@@ -27,7 +27,7 @@
 		</div>
 		<div class="col-md-1"></div>
 		<div class="col-md-6">
-			<p><strong>Category:</strong> {{ food.category }}</p>
+			<p><strong>Category:</strong> <a href = "{{ food.category.get_absolute_url }} ">{{ food.category }}</a></p>
 			<p><strong>Price:</strong> ${{ food.price|floatformat:2 }}</p>
 
 			{% get_rating_score for food as score %}
@@ -43,7 +43,6 @@
     			<p>{{ rating_form }}&nbsp;({{ score.num_votes }})</p>
     			<p><button type="submit" class="btn btn-primary">Vote &rarr;</button></p>
 			</form>
-			<p><a href="{{ food.category.get_absolute_url }}">Back to {{ food.category }}</a></p>
 		</div>
 	</div>
 

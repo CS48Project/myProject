@@ -8,7 +8,7 @@
     <link rel="icon" href="{% static "assets/images/favicon.ico" %}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://bootswatch.com/journal/bootstrap.css">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <!-- Ajax -->
@@ -36,31 +36,19 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="/"><img src = "{% static "assets/images/favicon.ico" %}" style = "width:40px; position:relative; bottom:10px;" ></a>
         <a class="navbar-brand" href="/">IV What to Eat</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/food/foodoftheday/">Food of the Day</a></li>
-          <li><a href="/food/whattoeat/">What to Eat</a></li>
-          <li class="dropdown">
-            <a href="/food/categories/" class="dropdown-toggle" data-toggle="dropdown">Food <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="/food/categories/">Categories</a></li>
-              <li><a href="/food/restaurants/">Restaurants</a></li>
-              <li class="divider"></li>
-              <li><a href="/food/search/">Search</a></li>
-              <li><a href="/food/submit/">Submit Food Item</a></li>
-            </ul>
-          </li>
+          <li><a href="/food/categories/">Categories</a></li>
+          <li><a href="/food/restaurants/">Restaurants</a></li>
+          <li><a href="/food/submit/">Submit Food</a></li>
+          <li><a href="/food/search/">Search</a></li> 
         </ul>
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-default">Search</button>
-        </form>
+
 
         <ul class="nav navbar-nav navbar-right">  
           {% if user.is_authenticated %}
