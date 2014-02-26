@@ -43,7 +43,7 @@ LOGIN_URL = '/accounts/login/'
 
 SITE_ID = 1
 
-SESSION_COOKIE_AGE = 360
+SESSION_COOKIE_AGE = 1209600
 
 # Application definition
 

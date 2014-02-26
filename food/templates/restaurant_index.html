@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+<style>
+	.img-thumbnail {
+		width: 190px;
+		height: 170px;
+	}
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="page-header">
 	<h1>Restaurant Index <small>A list of all restaurants.</small></h1>
 </div>
 
-<div class="row">
+<div class="row text-center">
 	{% for restaurant in restaurant_index %}
 		<div class="col-md-2">
-			<img src="/static/assets/{{ restaurant.picture }}" class="img-thumbnail" style="width:190px; height:170px;">
+			<a href="{{ restaurant.get_absolute_url }}"><img src="/static/assets/{{ restaurant.picture }}" class="img-thumbnail"></a>
 			<h4><a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a></h4>
 		</div>
 		{% if forloop.counter|divisibleby:"6" and not forloop.last %}
