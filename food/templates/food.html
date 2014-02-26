@@ -48,9 +48,9 @@
 
 	<div class="row">
 		<div class="col-md-1"></div>
-		<div class="col-md-3">
 			{% if user.is_authenticated %}
 		    	{% get_comment_form for food as form %}
+				<div class="col-md-3">
 		    	<form role="form" action="{% comment_form_target %}" method="post">
 		    		{% csrf_token %}
 		    		<h3>{{ form.comment.label_tag }}</h3><p>{{ form.comment }}</p>
@@ -65,35 +65,25 @@
 		    			<button type="submit" name="preview" class="btn btn-primary">Preview</button>
 		    		</p>
 		    	</form>
+			</div>
+	                <div class="col-md-2"></div>
+	                  	<div class="col-md-6">
+	                	  <h3>Comments:</h3>
+	                  		{% render_comment_list for food %}
+	              	</div>
 			{% else %}
-				{% get_comment_form for food as form %}
-				<form role="form" action="{% comment_form_target %}" method="post">
-					{% csrf_token %}
-		  			{% for field in form %}
-		    			{% if field.is_hidden %}
-		      				<div>{{ field }}</div>
-		    			{% else %}
-		      				<p
-		        				{% if field.errors %} class="error" {% endif %}
-		        				{% ifequal field.name "honeypot" %} style="display:none;" {% endifequal %}>
-		        				{{ field.label_tag }} {{ field }}
-		      				</p>
-		      				{% if field.errors %} {{ field.errors }} {% endif %}
-		    			{% endif %}
-		  			{% endfor %}
-		  			<input type="hidden" name="next" value="{{ food.get_absolute_url }}" />
-		  			<p class="submit">
-		    			<button type="submit" name="post" class="btn btn-primary">Post</button>
-		    			<button type="submit" name="preview" class="btn btn-primary">Preview</button>
-		  			</p>
-				</form>
+
+				<div class="col-md-1"></div>
+				<div class="col-md-8">
+	                	  <h3>Comments:</h3>
+	                  		{% render_comment_list for food %}
+	                        </div>
+                            	<div class="col-md-2"></div>
+		
+
 			{% endif %}
-		</div>
-		<div class="col-md-2"></div>
-		<div class="col-md-6">
-			<h3>Comments:</h3>
-			{% render_comment_list for food %}
-		</div>
+
+
 	</div>
 </div>
 {% endblock %}
