@@ -1,14 +1,32 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+<style>
+	.img-thumbnail {
+		width: 190px;
+		height: 170px;
+	}
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="page-header">
 	<h1>{{ restaurant.name }} <small>A list of all {{ restaurant.name }} food items.</small></h1>
 </div>
 
 {% if food_list.count > 0 %}
-	{% for food in food_list %}
-		<h3><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></h3>
-	{% endfor %}
+	<div class="row text-center">
+		{% for food in food_list %}
+			<div class="col-md-3">
+				<a href="{{ food.get_absolute_url }}"><img src="/static/assets/{{ food.picture }}" class="img-thumbnail"></a>
+				<h4><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></h4>
+			</div>
+			{% if forloop.counter|divisibleby:"4" and not forloop.last %}
+				</div>
+				<div class="row">
+			{% endif %}
+		{% endfor %}
+	</div>
 {% else %}
 	<h3>None to show!</h3>
 {% endif %}

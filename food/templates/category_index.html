@@ -1,11 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block extrahead %}
 <style>
-	#text {
-	    background: none repeat scroll 0 0;
-	    margin: auto;
-	    position: absolute;
+	.img-thumbnail {
+		width: 190px;
+		height: 170px;
 	}
 </style>
 {% endblock %}
@@ -15,11 +15,15 @@
 	<h1>Category Index <small>A list of all food categories.</small></h1>
 </div>
 
-<div class="row">
+<div class="row text-center">
 	{% for category in category_index %}
 		<div class="col-md-2">
-			<a href="{{ category.get_absolute_url }}"><img src="/static/assets/{{ category.picture }}" class="img-thumbnail" style="width:190px; height:170px;"></a>
-			<h4 id="text"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h4>
+			{% if food.picture %}
+				<a href="{{ category.get_absolute_url }}"><img src="/static/assets/{{ category.picture }}" class="img-thumbnail"></a>
+			{% else %}
+				<a href="{{ category.get_absolute_url }}"><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail"></a>
+			{% endif %}
+			<h4><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h4>
 		</div>
 		{% if forloop.counter|divisibleby:"6" and not forloop.last %}
 			</div>
