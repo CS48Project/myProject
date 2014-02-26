@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+<style>
+	#text {
+	    background: none repeat scroll 0 0;
+	    margin: auto;
+	    position: absolute;
+	}
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="page-header">
 	<h1>Restaurant Index <small>A list of all restaurants.</small></h1>
@@ -8,8 +18,8 @@
 <div class="row">
 	{% for restaurant in restaurant_index %}
 		<div class="col-md-2">
-			<img src="/static/assets/{{ restaurant.picture }}" class="img-thumbnail" style="width:190px; height:170px;">
-			<h4><a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a></h4>
+			<a href="{{ restaurant.get_absolute_url }}"><img src="/static/assets/{{ restaurant.picture }}" class="img-thumbnail" style="width:190px; height:170px;"></a>
+			<h4 id="text"><a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a></h4>
 		</div>
 		{% if forloop.counter|divisibleby:"6" and not forloop.last %}
 			</div>
