@@ -5,7 +5,16 @@
 	<h1>Category Index <small>A list of all food categories.</small></h1>
 </div>
 
-{% for category in category_index %}
-	<h2><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h2>
-{% endfor %}
+<div class="row">
+	{% for category in category_index %}
+		<div class="col-md-2">
+			<img src="/static/assets/{{ category.picture }}" class="img-thumbnail" style="width:190px; height:170px;">
+			<h4><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h4>
+		</div>
+		{% if forloop.counter|divisibleby:"6" and not forloop.last %}
+			</div>
+			<div class="row">
+		{% endif %}
+	{% endfor %}
+</div>
 {% endblock %}

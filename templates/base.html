@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="http://bootswatch.com/journal/bootstrap.css">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <!-- Ajax -->
-    <script src="{% static "assets/js/ajax.js" %}"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     {% block extrahead %}
@@ -36,7 +34,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><img src = "{% static "assets/images/favicon.ico" %}" style = "width:40px; position:relative; bottom:10px;" ></a>
+        <a class="navbar-brand" href="/"><img src="{% static "assets/images/favicon.ico" %}" style="width:40px; position:relative; bottom:10px;"></a>
         <a class="navbar-brand" href="/">IV What to Eat</a>
       </div>
 

@@ -19,8 +19,8 @@
 
 <h2><a href="{{ random_food.get_absolute_url }}">{{ random_food.name }}</a></h2>
 <ul>
-	<li><strong>Restaurant:</strong> {{ random_food.restaurant }}</li>
-	<li><strong>Category:</strong> {{ random_food.category }}</li>
+	<li><strong>Restaurant:</strong> <a href="{{ random_food.restaurant.get_absolute_url }}">{{ random_food.restaurant }}</a></li>
+	<li><strong>Category:</strong> <a href="{{ random_food.category.get_absolute_url }}">{{ random_food.category }}</a></li>
 	<li><strong>Price:</strong> ${{ random_food.price|floatformat:2 }}</li>
 	
 	{% get_rating_score for random_food as score %}
