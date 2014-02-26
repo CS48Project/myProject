@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load ratings_tags %}
+{% load comments %}
 
 {% block extrahead %}
 <script src="{% static 'assets/star-rating/jquery.js' %}" type="text/javascript"></script>
@@ -14,26 +15,87 @@
 <div class="page-header">
 	<h1>What to Eat <small>Here is a random food item for you!</small></h1>
 </div>
+<div class = "row">
+<div class = "col-md-4"></div>
+<div class = "col-md-4" style="text-align:center">
+<p><a href="/food/whattoeat/" class="btn btn-lg btn-primary" role="button">Random Food</a></p>
+</div>
+<div class = "col-md-4"></div>
+</div>
 
-<h3><a href="/food/whattoeat/">Generate</a></h3>
+<div class="container">
 
-<h2><a href="{{ random_food.get_absolute_url }}">{{ random_food.name }}</a></h2>
-<ul>
-	<li><strong>Restaurant:</strong> <a href="{{ random_food.restaurant.get_absolute_url }}">{{ random_food.restaurant }}</a></li>
-	<li><strong>Category:</strong> <a href="{{ random_food.category.get_absolute_url }}">{{ random_food.category }}</a></li>
-	<li><strong>Price:</strong> ${{ random_food.price|floatformat:2 }}</li>
-	
-	{% get_rating_score for random_food as score %}
-	{% if score %}
-	    <li><strong>Rating:</strong> {% show_starrating score 5.5 2 %}&nbsp;({{ score.num_votes }})</li>
-	{% else %}
-	    <li>No ratings for {{ random_food }} yet. Rate it <a href="{{ random_food.get_absolute_url }}">here</a>!</li>
-	{% endif %}
-</ul>
+		<h1 class="text-center"><a href="{{ random_food.restaurant.get_absolute_url }}">{{ random_food.restaurant }}</a> {{ random_food.name }}</h1>
 
-{% if random_food.picture %}
-	<p><img src="/static/assets/{{ random_food.picture }}" class="img-thumbnail" width="300"></p>
-{% else %}
-	<p><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail" width="200"></p>
-{% endif %}
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-4">
+			{% if random_food.picture %}
+				<p class="text-center"><img src="/static/assets/{{ random_food.picture }}" class="img-thumbnail" width="250"></p>
+			{% else %}
+				<p class="text-center"><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail" width="200"></p>
+			{% endif %}
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-6">
+			<p><strong>Category:</strong> <a href="{{ random_food.category.get_absolute_url }}">{{ random_food.category }}</a></p>
+			<p><strong>Price:</strong> ${{ random_food.price|floatformat:2 }}</p>
+
+			{% get_rating_score for random_food as score %}
+			{% if score %}
+    			<p><strong>Rating:</strong> {{ score.average|floatformat }}</p>
+			{% else %}
+    			<p>No ratings for {{ random_food }} yet. Be the first!</p>
+			{% endif %}
+
+			{% get_rating_form for random_food as rating_form %}
+			<form role="form" action="{% url 'ratings_vote' %}" method="post">
+    			{% csrf_token %}
+    			<p>{{ rating_form }}&nbsp;({{ score.num_votes }})</p>
+    			<p><button type="submit" class="btn btn-primary">Vote &rarr;</button></p>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+			{% if user.is_authenticated %}
+		    	{% get_comment_form for random_food as form %}
+				<div class="col-md-3">
+		    	<form role="form" action="{% comment_form_target %}" method="post">
+		    		{% csrf_token %}
+		    		<h3>{{ form.comment.label_tag }}</h3><p>{{ form.comment }}</p>
+		    		<p style="display:none;">{{ form.honeypot }}</p>
+		    		<p>{{ form.content_type }}</p>
+		    		<p>{{ form.object_pk }}</p>
+		    		<p>{{ form.timestamp }}</p>
+		    		<p>{{ form.security_hash }}</p>
+		    		<input type="hidden" name="next" value="{{ random_food.get_absolute_url }}" />
+		    		<p class="submit">
+		    			<button type="submit" name="post" class="btn btn-primary">Post</button>
+		    			<button type="submit" name="preview" class="btn btn-primary">Preview</button>
+		    		</p>
+		    	</form>
+			</div>
+	                <div class="col-md-2"></div>
+	                  	<div class="col-md-6">
+	                	  <h3>Comments:</h3>
+	                  		{% render_comment_list for random_food %}
+	              	</div>
+			{% else %}
+
+				<div class="col-md-1"></div>
+				<div class="col-md-8">
+	                	  <h3>Comments:</h3>
+	                  		{% render_comment_list for random_food %}
+	                        </div>
+                            	<div class="col-md-2"></div>
+		
+
+			{% endif %}
+
+
+	</div>
+</div>
+
 {% endblock %}
