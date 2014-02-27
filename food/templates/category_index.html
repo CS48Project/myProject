@@ -18,7 +18,7 @@
 <div class="row text-center">
 	{% for category in category_index %}
 		<div class="col-md-2">
-			{% if food.picture %}
+			{% if category.picture %}
 				<a href="{{ category.get_absolute_url }}"><img src="/static/assets/{{ category.picture }}" class="img-thumbnail"></a>
 			{% else %}
 				<a href="{{ category.get_absolute_url }}"><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail"></a>
