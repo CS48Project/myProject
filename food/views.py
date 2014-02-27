@@ -30,6 +30,26 @@ def submit(request):
   return render_to_response('submit.html', context,
                             context_instance=RequestContext(request))
 
+@login_required
+def edit(request, foodslug, food_id):
+  """
+  Displays the food edit form and handles the food edit info action.
+  Requires user to be logged in.
+  """
+  food = Food.objects.get(id=food_id)
+  if request.method == 'POST':
+    form = FoodForm(request.POST, request.FILES, instance=food)
+    if form.is_valid():
+      form.save()
+      return HttpResponseRedirect(food.get_absolute_url())
+  else:
+    """User is not submitting form, show them a black edit form."""
+    form = FoodForm(instance=food)
+  context = {'form': form}
+  context.update(csrf(request))
+  return render_to_response('edit.html', context,
+                            context_instance=RequestContext(request))
+
 def food_index(request):
   """
   Displays a list of all Food objects.

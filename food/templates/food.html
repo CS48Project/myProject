@@ -17,6 +17,14 @@
 </div>
 
 <div class="row">
+	<div class="col-md-6"></div>
+	<div class="col-md-6 text-center">
+		<a href="{{ food.get_absolute_url }}edit/" class="btn btn-sm btn-primary" role="button">
+			<span class="glyphicon glyphicon-pencil"></span>&nbsp; Edit Info</a>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-4">
 		{% if food.picture %}
