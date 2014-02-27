@@ -22,11 +22,18 @@
         min-height: 819px;
         height: auto;
       }
-
       #site-pic {
         width: 40px;
         bottom: 10px;
         position: relative;
+      }
+      #facebook-link {
+        width: 60px;
+        float: right;
+      }
+      #twitter-link {
+        width: 45px;
+        float: right;
       }
     </style>
   </head>
@@ -76,12 +83,20 @@
 
     <div class="container">
       <footer class="footer">
-        <div>
-          <a class="footer-link" href="/about/">About</a>
-          <a class="footer-link">|</a>
-          <a class="footer-link" href="/terms/">Terms of Use</a>
+        <div class="row">
+          <div class="col-md-6">
+            <p>
+              <a class="footer-link" href="/about/">About</a> |
+              <a class="footer-link" href="/terms/">Terms of Use</a> |
+              <a class="footer-link" href="mailto:ivwhattoeat@gmail.com" target="_blank">Contact Us</a><br>
+              © 2014 I.V. What to Eat. All Rights Reserved.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <a href="https://twitter.com/Bman77717" target="_blank"><img src="{% static "assets/images/twitter_logo.png" %}" id="twitter-link"></a>
+            <a href="https://www.facebook.com/Bman77717Official" target="_blank"><img src="{% static "assets/images/facebook_logo.jpg" %}" id="facebook-link"></a>
+          </div>
         </div>
-        <p class="pull-left">© 2014 I.V. What to Eat. All Rights Reserved.</p>
       </footer>
     </div>
   </body>
