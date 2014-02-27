@@ -97,7 +97,12 @@ class CommentDetailsForm(CommentSecurityForm):
     name          = forms.CharField(label=_("Name"), max_length=50)
     email         = forms.EmailField(label=_("Email address"))
     url           = forms.URLField(label=_("URL"), required=False)
-    comment       = forms.CharField(label=_('Comment'), widget=forms.Textarea,
+    comment       = forms.CharField(label=_('Comment'),
+                                    widget=forms.Textarea(attrs={
+                                                            'rows': 3,
+                                                            'cols': 78,
+                                                            'placeholder': 'Leave a comment...',
+                                                          }),
                                     max_length=COMMENT_MAX_LENGTH)
 
     def get_comment_object(self):

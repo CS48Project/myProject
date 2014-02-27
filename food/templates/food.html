@@ -9,6 +9,12 @@
 <link href="{% static 'assets/star-rating/jquery.rating.css' %}" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{% static 'assets/star-rating/jquery.MetaData.js' %}"></script>
 <script type="text/javascript" src="{% static 'assets/star-rating/jquery.rating.js' %}"></script>
+
+<style>
+	#comment {
+		word-wrap: break-word;
+	}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -25,15 +31,14 @@
 </div>
 
 <div class="row">
-	<div class="col-md-1"></div>
+	<div class="col-md-2"></div>
 	<div class="col-md-4">
 		{% if food.picture %}
-			<p class="text-center"><img src="/static/assets/{{ food.picture }}" class="img-thumbnail" width="250"></p>
+			<p class="text-left"><img src="/static/assets/{{ food.picture }}" class="img-thumbnail" width="300"></p>
 		{% else %}
 			<p class="text-center"><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail" width="200"></p>
 		{% endif %}
 	</div>
-	<div class="col-md-1"></div>
 	<div class="col-md-6">
 		<p><strong>Category:</strong> <a href="{{ food.category.get_absolute_url }}">{{ food.category }}</a></p>
 		<p><strong>Price:</strong> ${{ food.price|floatformat:2 }}</p>
@@ -54,11 +59,11 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-1"></div>
-	{% if user.is_authenticated %}
+{% if user.is_authenticated %}
+	<div class="row">
+		<div class="col-md-3"></div>
     	{% get_comment_form for food as form %}
-		<div class="col-md-3">
+		<div class="col-md-6">
 	    	<form role="form" action="{% comment_form_target %}" method="post">
 	    		{% csrf_token %}
 	    		<h3>{{ form.comment.label_tag }}</h3><p>{{ form.comment }}</p>
@@ -74,18 +79,24 @@
 	    		</p>
 	    	</form>
 		</div>
-        <div class="col-md-2"></div>
-        <div class="col-md-6">
+        <div class="col-md-3"></div>
+	</div>
+	<div class="row">
+    	<div class="col-md-3"></div>
+        <div class="col-md-6" id="comment">
         	<h3>Comments:</h3>
         	{% render_comment_list for food %}
       	</div>
-	{% else %}
-		<div class="col-md-1"></div>
-		<div class="col-md-8">
+      	<div class="col-md-3"></div>
+  	</div>
+{% else %}
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6" id="comment">
 			<h3>Comments:</h3>
 			{% render_comment_list for food %}
 		</div>
-		<div class="col-md-2"></div>
-	{% endif %}
-</div>
+		<div class="col-md-3"></div>
+	</div>
+{% endif %}
 {% endblock %}
