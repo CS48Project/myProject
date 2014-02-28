@@ -4,11 +4,11 @@
 {% load comments %}
 
 {% block extrahead %}
-<script src="{% static 'assets/star-rating/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'star-rating/jquery.js' %}" type="text/javascript"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript"></script>
-<link href="{% static 'assets/star-rating/jquery.rating.css' %}" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="{% static 'assets/star-rating/jquery.MetaData.js' %}"></script>
-<script type="text/javascript" src="{% static 'assets/star-rating/jquery.rating.js' %}"></script>
+<link href="{% static 'star-rating/jquery.rating.css' %}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{% static 'star-rating/jquery.MetaData.js' %}"></script>
+<script type="text/javascript" src="{% static 'star-rating/jquery.rating.js' %}"></script>
 
 <style>
 	#comment {
@@ -34,9 +34,9 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
 		{% if food.picture %}
-			<p class="text-left"><img src="/static/assets/{{ food.picture }}" class="img-thumbnail" width="300"></p>
+			<p class="text-left"><img src="/static/{{ food.picture }}" class="img-thumbnail" width="300"></p>
 		{% else %}
-			<p class="text-center"><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail" width="200"></p>
+			<p class="text-center"><img src="{% static "images/defaultPicture.png" %}" class="img-thumbnail" width="200"></p>
 		{% endif %}
 	</div>
 	<div class="col-md-6">

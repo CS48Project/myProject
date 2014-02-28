@@ -19,9 +19,9 @@
 	{% for category in category_index %}
 		<div class="col-md-2">
 			{% if category.picture %}
-				<a href="{{ category.get_absolute_url }}"><img src="/static/assets/{{ category.picture }}" class="img-thumbnail"></a>
+				<a href="{{ category.get_absolute_url }}"><img src="/static/{{ category.picture }}" class="img-thumbnail"></a>
 			{% else %}
-				<a href="{{ category.get_absolute_url }}"><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail"></a>
+				<a href="{{ category.get_absolute_url }}"><img src="{% static "images/defaultPicture.png" %}" class="img-thumbnail"></a>
 			{% endif %}
 			<h4><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h4>
 		</div>
