@@ -1,10 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extrahead %}
+<style>
+  .jumbotron {
+    background-image: url({% static "assets/images/3499197531_3a50315917_o.jpg" %});
+  }
+
+  #text {
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="jumbotron" style="background-image: url({% static "assets/images/IMG_6685-1500x500.jpg" %});">
-  <h1>I.V. What to Eat</h1>
-  <p>The one-stop directory for everything to eat in Isla Vista.</p>
+<div class="jumbotron">
+  <h1 id="text">I.V. What to Eat</h1>
+  <p id="text">The one-stop directory for everything to eat in Isla Vista.</p>
   <p><a class="btn btn-primary btn-lg" href="/about/" role="button">Learn more</a></p>
 </div>
 
