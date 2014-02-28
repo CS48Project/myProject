@@ -9,6 +9,12 @@
 <link href="{% static 'assets/star-rating/jquery.rating.css' %}" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{% static 'assets/star-rating/jquery.MetaData.js' %}"></script>
 <script type="text/javascript" src="{% static 'assets/star-rating/jquery.rating.js' %}"></script>
+
+<style>
+	#comment {
+		word-wrap: break-word;
+	}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -23,27 +29,26 @@
 <h1 class="text-center"><a href="{{ random_food.restaurant.get_absolute_url }}">{{ random_food.restaurant }}</a> {{ random_food.name }}</h1>
 
 <div class="row">
-	<div class="col-md-1"></div>
+	<div class="col-md-2"></div>
 	<div class="col-md-4">
-		{% if random_food.picture %}
-			<a href="{{ random_food.get_absolute_url }}"><p class="text-center"><img src="/static/assets/{{ random_food.picture }}" class="img-thumbnail" width="250"></p></a>
+		{% if food.picture %}
+			<a href="{{ food.get_absolute_url }}"><p class="text-left"><img src="/static/assets/{{ food.picture }}" class="img-thumbnail" width="300"></p></a>
 		{% else %}
-			<a href="{{ random_food.get_absolute_url }}"><p class="text-center"><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail" width="200"></p></a>
+			<a href="{{ food.get_absolute_url }}"><p class="text-center"><img src="{% static "assets/images/defaultPicture.png" %}" class="img-thumbnail" width="200"></p></a>
 		{% endif %}
 	</div>
-	<div class="col-md-1"></div>
 	<div class="col-md-6">
-		<p><strong>Category:</strong> <a href="{{ random_food.category.get_absolute_url }}">{{ random_food.category }}</a></p>
-		<p><strong>Price:</strong> ${{ random_food.price|floatformat:2 }}</p>
+		<p><strong>Category:</strong> <a href="{{ food.category.get_absolute_url }}">{{ food.category }}</a></p>
+		<p><strong>Price:</strong> ${{ food.price|floatformat:2 }}</p>
 
-		{% get_rating_score for random_food as score %}
+		{% get_rating_score for food as score %}
 		{% if score %}
 			<p><strong>Rating:</strong> {{ score.average|floatformat }}</p>
 		{% else %}
-			<p>No ratings for {{ random_food }} yet. Be the first!</p>
+			<p>No ratings for {{ food }} yet. Be the first!</p>
 		{% endif %}
 
-		{% get_rating_form for random_food as rating_form %}
+		{% get_rating_form for food as rating_form %}
 		<form role="form" action="{% url 'ratings_vote' %}" method="post">
 			{% csrf_token %}
 			<p>{{ rating_form }}&nbsp;({{ score.num_votes }})</p>
@@ -52,11 +57,11 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-1"></div>
-	{% if user.is_authenticated %}
-    	{% get_comment_form for random_food as form %}
-		<div class="col-md-3">
+{% if user.is_authenticated %}
+	<div class="row">
+		<div class="col-md-3"></div>
+    	{% get_comment_form for food as form %}
+		<div class="col-md-6">
 	    	<form role="form" action="{% comment_form_target %}" method="post">
 	    		{% csrf_token %}
 	    		<h3>{{ form.comment.label_tag }}</h3><p>{{ form.comment }}</p>
@@ -65,25 +70,31 @@
 	    		<p>{{ form.object_pk }}</p>
 	    		<p>{{ form.timestamp }}</p>
 	    		<p>{{ form.security_hash }}</p>
-	    		<input type="hidden" name="next" value="{{ random_food.get_absolute_url }}" />
+	    		<input type="hidden" name="next" value="{{ food.get_absolute_url }}" />
 	    		<p class="submit">
 	    			<button type="submit" name="post" class="btn btn-primary">Post</button>
 	    			<button type="submit" name="preview" class="btn btn-primary">Preview</button>
 	    		</p>
 	    	</form>
 		</div>
-		<div class="col-md-2"></div>
-		<div class="col-md-6">
+        <div class="col-md-3"></div>
+	</div>
+	<div class="row">
+    	<div class="col-md-3"></div>
+        <div class="col-md-6" id="comment">
+        	<h3>Comments:</h3>
+        	{% render_comment_list for food %}
+      	</div>
+      	<div class="col-md-3"></div>
+  	</div>
+{% else %}
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6" id="comment">
 			<h3>Comments:</h3>
-			{% render_comment_list for random_food %}
+			{% render_comment_list for food %}
 		</div>
-	{% else %}
-		<div class="col-md-1"></div>
-		<div class="col-md-8">
-			<h3>Comments:</h3>
-			{% render_comment_list for random_food %}
-		</div>
-		<div class="col-md-2"></div>
-	{% endif %}
-</div>
+		<div class="col-md-3"></div>
+	</div>
+{% endif %}
 {% endblock %}
