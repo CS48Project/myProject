@@ -60,7 +60,6 @@ INSTALLED_APPS = (
     'ratings',
     'django_comments',
     'pytz',
-    'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
