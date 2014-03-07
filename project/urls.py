@@ -21,5 +21,4 @@ urlpatterns = patterns('',
     url(r'^$', 'project.views.home'),
     url(r'^about/$', 'project.views.about'),
     url(r'^terms/$', 'project.views.terms'),
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )
