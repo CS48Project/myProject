@@ -3,6 +3,7 @@ Site-wide URLs
 """
 
 from django.conf.urls import patterns, include, url
+from project import settings
 
 from django.contrib import admin
 admin.autodiscover()
