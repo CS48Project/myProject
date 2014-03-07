@@ -18,7 +18,11 @@
 	<div class="row text-center">
 		{% for food in food_list %}
 			<div class="col-md-3">
-				<a href="{{ food.get_absolute_url }}"><img src="/static/{{ food.picture }}" class="img-thumbnail"></a>
+				{% if food.picture %}
+					<a href="{{ food.get_absolute_url }}"><img src="/static/{{ food.picture }}" class="img-thumbnail"></a>
+				{% else %}
+					<a href="{{ food.get_absolute_url }}"><img src="{% static "images/defaultPicture.png" %}" class="img-thumbnail"></a>
+				{% endif %}
 				<h3><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></h3>
 			</div>
 			{% if forloop.counter|divisibleby:"4" and not forloop.last %}
