@@ -34,7 +34,7 @@
 		{% if food.picture %}
 			<a href="{{ food.get_absolute_url }}"><p class="text-left"><img src="/static/{{ food.picture }}" class="img-thumbnail" width="300"></p></a>
 		{% else %}
-			<a href="{{ food.get_absolute_url }}"><p class="text-center"><img src="{% static "images/defaultPicture.png" %}" class="img-thumbnail" width="200"></p></a>
+			<a href="{{ food.get_absolute_url }}"><p class="text-center"><img src="https://s3.amazonaws.com/ivwhattoeat/images/defaultPicture.png" class="img-thumbnail" width="200"></p></a>
 		{% endif %}
 	</div>
 	<div class="col-md-6">
