@@ -62,6 +62,7 @@ INSTALLED_APPS = (
     'django_comments',
     'pytz',
     'gunicorn',
+    'storages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -118,8 +119,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_ROOT = 'staticfiles'
 
-STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -156,3 +155,13 @@ if environ.has_key('DATABASE_URL'):
         'HOST': url.hostname,
         'PORT': url.port,
     }
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'ivwhattoeat'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
