@@ -17,12 +17,16 @@
 <div class="row text-center">
 	{% for restaurant in restaurant_index %}
 		<div class="col-md-2">
-			<a href="{{ restaurant.get_absolute_url }}"><img src="https://s3.amazonaws.com/ivwhattoeat/{{ restaurant.picture }}" class="img-thumbnail"></a>
+			{% if restaurant.picture %}
+				<a href="{{ restaurant.get_absolute_url }}"><img src="https://s3.amazonaws.com/ivwhattoeat/{{ restaurant.picture }}" class="img-thumbnail"></a>
+			{% else %}
+				<a href="{{ restaurant.get_absolute_url }}"><img src="https://s3.amazonaws.com/ivwhattoeat/images/defaultPicture.png" class="img-thumbnail"></a>
+			{% endif %}
 			<h4><a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a></h4>
 		</div>
 		{% if forloop.counter|divisibleby:"6" and not forloop.last %}
 			</div>
-			<div class="row">
+			<div class="row text-center">
 		{% endif %}
 	{% endfor %}
 </div>
