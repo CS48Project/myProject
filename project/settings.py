@@ -62,8 +62,6 @@ INSTALLED_APPS = (
     'django_comments',
     'pytz',
     'gunicorn',
-    'storages',
-    'require_s3',
 )
 
 MIDDLEWARE_CLASSES = (
