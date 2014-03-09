@@ -17,7 +17,7 @@
 <div class="row text-center">
 	{% for restaurant in restaurant_index %}
 		<div class="col-md-2">
-			<a href="{{ restaurant.get_absolute_url }}"><img src="{{ STATIC_URL_TEMPLATE }}{{ restaurant.picture }}" class="img-thumbnail"></a>
+			<a href="{{ restaurant.get_absolute_url }}"><img src="https://s3.amazonaws.com/ivwhattoeat/{{ restaurant.picture }}" class="img-thumbnail"></a>
 			<h4><a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a></h4>
 		</div>
 		{% if forloop.counter|divisibleby:"6" and not forloop.last %}
