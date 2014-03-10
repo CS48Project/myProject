@@ -17,7 +17,7 @@
 <div class="page-header">
 	<h1>{{ category.name }} <small>A list of all {{ category.name }} items.</small></h1>
 </div>
-
+	<div class="alert alert-danger text-center" ><h4>Don't see a food item you like? <a href = "/food/submit/">Click here to submit a new item.</a></div>
 {% if food_list.count > 0 %}
 	<div class="row text-center">
 		{% for food in food_list %}
@@ -27,7 +27,7 @@
 				{% else %}
 					<a href="{{ food.get_absolute_url }}"><img src="https://s3.amazonaws.com/ivwhattoeat/images/defaultPicture.png" class="img-thumbnail"></a>
 				{% endif %}
-				<h3><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></h3>
+				<h3><a href="{{ food.get_absolute_url }}">{{ food.name }} ({{ food.restaurant }})</a></h3>
 			</div>
 			{% if forloop.counter|divisibleby:"4" and not forloop.last %}
 				</div>

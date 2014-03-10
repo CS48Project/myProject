@@ -8,7 +8,7 @@
 
 {% if food_index.count > 0 %}
 	{% for food in food_index %}
-		<h3><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></h3>
+		<h3><a href="{{ food.get_absolute_url }}">{{ food.name }} ({{ food.restaurant }})</a></h3>
 	{% endfor %}
 {% else %}
 	<h3>None to show!</h3>
