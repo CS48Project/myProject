@@ -17,7 +17,11 @@
 <div class="page-header">
 	<h1>{{ category.name }} <small>A list of all {{ category.name }} items.</small></h1>
 </div>
-	<div class="alert alert-danger text-center" ><h4>Don't see a food item you like? <a href = "/food/submit/">Click here to submit a new item.</a></div>
+
+<div class="alert alert-danger text-center">
+	<h4>Don't see a food item you like? <a href="/food/submit/">Click here to submit a new item.</a></h4>
+</div>
+
 {% if food_list.count > 0 %}
 	<div class="row text-center">
 		{% for food in food_list %}
