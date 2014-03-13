@@ -82,6 +82,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
+    'project.views.google_analytics',
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -166,6 +167,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-48923216-1'
+GOOGLE_ANALYTICS_DOMAIN = 'www.ivwhattoeat.com'
 
 HAYSTACK_CONNECTIONS = {
     'default': {
