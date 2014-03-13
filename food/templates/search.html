@@ -1,72 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="page-header">
-	<h1>Search</h1>
-</div>
-
-<div class="container">
-	<p><em>Food names are automatically searched. Tick the boxes to search for extra criteria.</em></p>
-	<form role="form" action="" method="post">
-		{% csrf_token %}
-		<div class="form-group">
-			<label for="text">Enter search term: </label> {{ form.text }}
-			{% if form.text.errors %}
-				<p class="error"><font color="red">{{ form.text.errors }}</font></p>
-			{% endif %}
-		</div>
-		<div class="checkbox">
-	    	<label for="search_category">
-	      		{{ form.search_category }} Category
-	    	</label>
-	    	{% if form.search_category.errors %}
-				<p class="error"><font color="red">{{ form.search_category.errors }}</font></p>
-			{% endif %}
-	  	</div>
-	  	<div class="checkbox">
-	    	<label for="search_restaurant">
-	      		{{ form.search_restaurant }} Restaurant
-	    	</label>
-	    	{% if form.search_restaurant.errors %}
-				<p class="error"><font color="red">{{ form.search_restaurant.errors }}</font></p>
-			{% endif %}
-	  	</div>
-	  	<div class="checkbox">
-	    	<label for="has_image">
-	      		{{ form.has_image }} Has image
-	    	</label>
-	    	{% if form.has_image.errors %}
-				<p class="error"><font color="red">{{ form.has_image.errors }}</font></p>
-			{% endif %}
-	  	</div>
-	  	<p><button type="submit" class="btn btn-primary">Search</button></p>
-	</form>
-
-	{% if name_results %}
-		<h2>Search results for name</h2>
-		{% for food in name_results %}
-			<ul>
-				<li><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></li>
-			</ul>
-		{% endfor %}
-	{% endif %}
-
-	{% if category_results %}
-		<h2>Search results for category</h2>
-		{% for food in category_results %}
-			<ul>
-				<li><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></li>
-			</ul>
-		{% endfor %}
-	{% endif %}
-
-	{% if restaurant_results %}
-		<h2>Search results for restaurant</h2>
-		{% for food in restaurant_results %}
-			<ul>
-				<li><a href="{{ food.get_absolute_url }}">{{ food.name }}</a></li>
-			</ul>
-		{% endfor %}
-	{% endif %}
-</div>
+{% for result in page.object_list %}
+   <p>{{ result.object.name }}</p>
+   <p>{{ result.object.body }}</p>
+{% empty %}
+   <p>No results found.</p>
+{% endfor %}
 {% endblock %}
