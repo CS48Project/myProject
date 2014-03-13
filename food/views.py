@@ -137,9 +137,3 @@ def submit_success(request):
   """
   return render_to_response('submit_success.html',
                             context_instance=RequestContext(request))
-
-def search_food(request):
-  food = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
-  context = {'food': food}
-  return render_to_response('search.html', context,
-                            context_instance=RequestContext(request))

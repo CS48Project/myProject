@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for f in food %}
-   <p><a href="{{ f.object.get_absolute_url }}">{{ f.object.name }}</a></p>
+{% for result in page.object_list %}
+   <p><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a></p>
 {% empty %}
    <p>No results found.</p>
 {% endfor %}
