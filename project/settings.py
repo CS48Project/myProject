@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sites',
     'django.contrib.staticfiles',
+    'haystack',
     'food',
     'authentication',
     'ratings',
@@ -63,7 +64,6 @@ INSTALLED_APPS = (
     'pytz',
     'gunicorn',
     'storages',
-    'haystack',
 )
 
 MIDDLEWARE_CLASSES = (
