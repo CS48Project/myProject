@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="page-header">
+	<h1>Search Results</h1>
+</div>
+
 {% for result in page.object_list %}
    <p><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a></p>
 {% empty %}
