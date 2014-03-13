@@ -6,8 +6,8 @@
 </div>
 
 {% for result in page.object_list %}
-   <p><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a></p>
+   <h3><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a></h3>
 {% empty %}
-   <p>No results found.</p>
+   <h3>No results found.</h3>
 {% endfor %}
 {% endblock %}

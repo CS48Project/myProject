@@ -6,11 +6,7 @@
 	<h1>Food List <small>A list of all food items.</small></h1>
 </div>
 
-{% if food_index.count > 0 %}
-	{% for food in food_index %}
-		<h3><a href="{{ food.get_absolute_url }}">{{ food.name }} ({{ food.restaurant }})</a></h3>
-	{% endfor %}
-{% else %}
-	<h3>None to show!</h3>
-{% endif %}
+{% for food in food_index %}
+	<h3><a href="{{ food.get_absolute_url }}">{{ food.name }} ({{ food.restaurant }})</a></h3>
+{% endfor %}
 {% endblock %}
