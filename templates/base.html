@@ -59,6 +59,9 @@
           <li><a href="/food/submit/">Submit Food</a></li>
           <!-- <li><a href="/food/search/">Search</a></li> -->
         </ul>
+        <form action="/search/" method="get">
+          <input type="text" name="q">
+        </form>
 
         <ul class="nav navbar-nav navbar-right">  
           {% if user.is_authenticated %}
