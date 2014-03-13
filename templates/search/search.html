@@ -6,7 +6,7 @@
 </div>
 
 {% for result in page.object_list %}
-   <h3><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a></h3>
+   <h3><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }} ({{ result.object.restaurant }})</a></h3>
 {% empty %}
    <h3>No results found.</h3>
 {% endfor %}
