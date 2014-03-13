@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load ratings_tags %}
+
+{% block content %}
+<strong>All votes:</strong>
+{% get_latest_votes_by user as latest_votes %}
+<ul>
+	{% for vote in latest_votes reversed %}
+		<li>{{ vote.content_object }}: {{ vote.score }}</li>
+    {% empty %}
+    	<p>You haven't rated anything yet.</p>
+	{% endfor %}
+</ul>
+{% endblock %}

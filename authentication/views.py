@@ -87,3 +87,6 @@ def profile(request):
 	Displays the user's profile information. Requires user to be logged in.
 	"""
 	return render_to_response("profile.html", context_instance=RequestContext(request))
+
+def all_votes(request):
+	return render_to_response("all_votes.html", context_instance=RequestContext(request))
