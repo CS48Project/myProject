@@ -6,8 +6,8 @@ class FoodIndex(indexes.SearchIndex, indexes.Indexable):
 
 	content_auto = indexes.EdgeNgramField(model_attr='name')
 
-    def get_model(self):
-    	return Food
+	def get_model(self):
+		return Food
 
 	def index_queryset(self, using=None):
 		"""Used when the entire index for the model is updated."""
