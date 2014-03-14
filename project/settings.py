@@ -82,7 +82,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
-    'project.views.google_analytics',
 )
 
 ROOT_URLCONF = 'project.urls'
