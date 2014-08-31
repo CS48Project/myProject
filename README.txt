@@ -15,5 +15,4 @@ SEARCHBOX_URL
 
 Their values can be found be doing a 'heroku config' inside the project folder.
 
-Also make sure all requirements are installed locally by running 'pip install -r requirements.txt' inside
-the project folder.
+Also make sure all requirements are installed locally by running 'pip install -r requirements.txt' inside the project folder.
