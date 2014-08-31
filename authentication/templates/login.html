@@ -9,20 +9,20 @@
 	<form role="form" action="" method="post">
 		{% csrf_token %}
 		{% if form.errors %}
-			<p><font color="red">Please correct the following fields:</font></p>
+			<p><span style="color: red; ">Please correct the following fields:</span></p>
 		{% endif %}
 		<div class="form-group">
 			<label for="username">User name</label>
 			<p>{{ form.username }}</p>
 			{% if form.username.errors %}
-				<p class="error"><font color="red">{{ form.username.errors }}</font></p>
+				<p class="error"><span style="color: red; ">{{ form.username.errors }}</span></p>
 			{% endif %}
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label>
 			<p>{{ form.password }}</p>
 			{% if form.password.errors %}
-				<p class="error"><font color="red">{{ form.password.errors }}</font></p>
+				<p class="error"><span style="color: red; ">{{ form.password.errors }}</span></p>
 			{% endif %}
 		</div>
 		<p><a href="/accounts/password_reset/">Forgot password?</a></p>
