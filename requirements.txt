@@ -1,7 +1,6 @@
 Django==1.6.1
 argparse==1.1
 boto==2.27.0
-distribute
 dj-database-url==0.2.2
 dj-static==0.0.5
 django-haystack==2.1.0
