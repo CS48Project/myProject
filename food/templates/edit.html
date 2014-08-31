@@ -10,41 +10,41 @@
 	<form role="form" action="" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		{% if form.errors %}
-			<p><font color="red">Please correct the following fields:</font></p>
+			<p><span style="color: red; ">Please correct the following fields:</span></p>
 		{% endif %}
 		<div class="form-group">
 			<label for="restaurant">* Restaurant</label>
 			<p>{{ form.restaurant }}</p>
 			{% if form.restaurant.errors %}
-				<p class="error"><font color="red">{{ form.restaurant.errors }}</font></p>
+				<p class="error"><span style="color: red; ">{{ form.restaurant.errors }}</span></p>
 			{% endif %}
 		</div>
 		<div class="form-group">
 			<label for="name">* Item Name</label>
 			<p>{{ form.name }}</p>
 			{% if form.name.errors %}
-				<p class="error"><font color="red">{{ form.name.errors }}</font></p>
+				<p class="error"><span style="color: red; ">{{ form.name.errors }}</span></p>
 			{% endif %}
 		</div>
 		<div class="form-group">
 			<label for="category">* Category</label>
 			<p>{{ form.category }}</p>
 			{% if form.category.errors %}
-				<p class="error"><font color="red">{{ form.category.errors }}</font></p>
+				<p class="error"><span style="color: red; ">{{ form.category.errors }}</span></p>
 			{% endif %}
 		</div>
 		<div class="form-group">
 			<label for="price">Price</label>
 			<p>${{ form.price }}</p>
 			{% if form.price.errors %}
-				<p class="error"><font color="red">{{ form.price.errors }}</font></p>
+				<p class="error"><span style="color: red; ">{{ form.price.errors }}</span></p>
 			{% endif %}
 		</div>
 		<div class="form-group">
 			<label for="picture">Picture</label>
 			<p>{{ form.picture }}</p>
 			{% if form.picture.errors %}
-				<p class="error"><font color="red">{{ form.picture.errors }}</font></p>
+				<p class="error"><span style="color: red; ">{{ form.picture.errors }}</span></p>
 			{% endif %}
 		</div>
 		<p class="help-block">Please upload a picture of this food item only.</p>

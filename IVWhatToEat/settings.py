@@ -1,5 +1,5 @@
 """
-Django settings for project project.
+Django settings for project IVWhatToEat.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -18,6 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 from django.utils.crypto import get_random_string
+
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_string(50, "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -84,9 +86,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
 )
 
-ROOT_URLCONF = 'project.urls'
+ROOT_URLCONF = 'IVWhatToEat.urls'
 
-WSGI_APPLICATION = 'project.wsgi.application'
+WSGI_APPLICATION = 'IVWhatToEat.wsgi.application'
 
 
 # Database
@@ -143,11 +145,10 @@ LOGGING = {
     }
 }
 
-from os import environ
 from urlparse import urlparse
 
-if environ.has_key('DATABASE_URL'):
-    url = urlparse(environ['DATABASE_URL'])
+if os.environ.has_key('DATABASE_URL'):
+    url = urlparse(os.environ['DATABASE_URL'])
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': url.path[1:],
@@ -159,18 +160,20 @@ if environ.has_key('DATABASE_URL'):
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'ivwhattoeat'
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+STATIC_URL = 'http://' + str(AWS_STORAGE_BUCKET_NAME) + '.s3.amazonaws.com/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+SEARCHBOX_URL = os.environ.get('SEARCHBOX_URL')
 
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': os.environ['SEARCHBOX_URL'],
+        'URL': SEARCHBOX_URL,
         'INDEX_NAME': 'food',
     },
 }

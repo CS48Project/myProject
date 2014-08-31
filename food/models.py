@@ -9,6 +9,8 @@ from ratings.handlers import ratings
 from ratings.forms import StarVoteForm
 
 # Create your models here.
+
+
 class Food(models.Model):
     """
     Defines the state and behavior of a Food object.
@@ -28,10 +30,11 @@ class Food(models.Model):
     # Returns the Food object's URL.
     def get_absolute_url(self):
         return "/food/" + str(self.slug) + "/" + str(self.id) + "/"
-    
+
     # Define the unicode version of a Food object.
     def __str__(self):
         return self.name
+
 
 class Category(models.Model):
     """
@@ -51,6 +54,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Restaurant(models.Model):
     """
     Defines the state and behavior of a Restaurant object. Users will not be able to
@@ -69,7 +73,8 @@ class Restaurant(models.Model):
     def __str__(self):
         return self.name
 
-def RandomFood():
+
+def random_food():
     """
     Helper function that returns a random Food object from the database.
     """
