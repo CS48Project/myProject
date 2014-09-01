@@ -12,6 +12,7 @@ DATABASE_URL
 S3_BUCKET_NAME
 SEARCHBOX_SSL_URL
 SEARCHBOX_URL
+SECRET_KEY
 
 Their values can be found be doing a 'heroku config' inside the project folder.
 

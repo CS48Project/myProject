@@ -1,5 +1,5 @@
 """
-Django settings for project IVWhatToEat.
+Django settings for IVWhatToEat project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 from django.utils.crypto import get_random_string
 
-SECRET_KEY = os.environ.get("SECRET_KEY", get_random_string(50, "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"))
+SECRET_KEY = os.environ.get('SECRET_KEY', get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -130,17 +130,17 @@ STATICFILES_DIRS = [
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "level": "INFO",
-            "class": "logging.StreamHandler",
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
         },
     },
-    "loggers": {
-        "django": {
-            "handlers": ["console"],
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
         }
     }
 }
