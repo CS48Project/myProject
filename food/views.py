@@ -34,12 +34,12 @@ def submit(request):
 
 
 @login_required
-def edit(request, foodslug, food_id):
+def edit(request, foodslug):
     """
     Displays the food_item edit form and handles the food_item edit info action.
     Requires user to be logged in.
     """
-    food_item = Food.objects.get(id=food_id)
+    food_item = Food.objects.get(slug=foodslug)
     if request.method == 'POST':
         form = FoodForm(request.POST, request.FILES, instance=food_item)
         if form.is_valid():
@@ -64,11 +64,11 @@ def food_index(request):
                               context_instance=RequestContext(request))
 
 
-def food(request, foodslug, food_id):
+def food(request, foodslug):
     """
     Displays the details of a specific Food object.
     """
-    food = Food.objects.get(id=food_id)
+    food = Food.objects.get(slug=foodslug)
     context = {'food': food}
     return render_to_response('food.html', context,
                               context_instance=RequestContext(request))

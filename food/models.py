@@ -20,7 +20,7 @@ class Food(models.Model):
     category = models.ForeignKey('Category')
     restaurant = models.ForeignKey('Restaurant')
     price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
-    picture = models.FileField(upload_to="uploaded_files/food_pics", blank=True, null=True)
+    picture = models.FileField(upload_to='uploaded_files/food_pics', blank=True, null=True)
 
     # Automatically slugifies the Food object's name upon creation.
     def save(self, *args, **kwargs):
@@ -29,7 +29,7 @@ class Food(models.Model):
 
     # Returns the Food object's URL.
     def get_absolute_url(self):
-        return "/food/" + str(self.slug) + "/" + str(self.id) + "/"
+        return '/food/' + str(self.slug) + '/'
 
     # Define the unicode version of a Food object.
     def __str__(self):
@@ -44,11 +44,11 @@ class Category(models.Model):
     """
     name = models.CharField(max_length=50)
     slug = models.SlugField()
-    picture = models.FileField(upload_to="uploaded_files/category_pics", blank=True, null=True)
+    picture = models.FileField(upload_to='uploaded_files/category_pics', blank=True, null=True)
 
     # Returns the Category object's URL.
     def get_absolute_url(self):
-        return "/food/categories/" + str(self.slug) + "/"
+        return '/food/categories/' + str(self.slug) + '/'
 
     # Define the unicode version of a Category object.
     def __str__(self):
@@ -63,11 +63,11 @@ class Restaurant(models.Model):
     """
     name = models.CharField(max_length=50)
     slug = models.SlugField()
-    picture = models.FileField(upload_to="uploaded_files/restaurant_pics", blank=True, null=True)
+    picture = models.FileField(upload_to='uploaded_files/restaurant_pics', blank=True, null=True)
 
     # Returns the Restaurant object's URL.
     def get_absolute_url(self):
-        return "/food/restaurants/" + str(self.slug) + "/"
+        return '/food/restaurants/' + str(self.slug) + '/'
 
     # Define the unicode version of a Restaurant object.
     def __str__(self):

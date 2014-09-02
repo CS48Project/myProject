@@ -15,9 +15,9 @@ class FoodForm(ModelForm):
     # Define the form's fields and their properties.
     name = forms.CharField(max_length=50)
     category = forms.ModelChoiceField(queryset=Category.objects.order_by('name'),
-                                      empty_label="Pick a category")
+                                      empty_label='Pick a category')
     restaurant = forms.ModelChoiceField(queryset=Restaurant.objects.order_by('name'),
-                                        empty_label="Pick a restaurant")
+                                        empty_label='Pick a restaurant')
     price = forms.DecimalField(min_value=0, max_digits=5, decimal_places=2, required=False)
     picture = forms.FileField(required=False)
 
