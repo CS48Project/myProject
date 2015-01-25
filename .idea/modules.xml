@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/IVWhatToEat.iml" filepath="$PROJECT_DIR$/.idea/IVWhatToEat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../WebCrawler/.idea/WebCrawler.iml" filepath="$PROJECT_DIR$/../WebCrawler/.idea/WebCrawler.iml" />
     </modules>
   </component>
 </project>
