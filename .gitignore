@@ -3,3 +3,4 @@
 staticfiles/
 static/
 .idea/
+*.db
